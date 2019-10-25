@@ -1,0 +1,342 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		803D17C22363646A00CF401D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 803D17C12363646A00CF401D /* main.cpp */; };
+		803D17CA2363647900CF401D /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803D17C92363647900CF401D /* GLUT.framework */; };
+		803D17CC2363647F00CF401D /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803D17CB2363647F00CF401D /* OpenGL.framework */; };
+		803D17D0236364E300CF401D /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 803D17CF236364E300CF401D /* app.cpp */; };
+		803D17D32363651300CF401D /* collision-simulation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 803D17D12363651300CF401D /* collision-simulation.cpp */; };
+		803D17D52363656A00CF401D /* particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 803D17D42363656A00CF401D /* particle.cpp */; };
+		803D17DD2363669E00CF401D /* particle-world.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 803D17DC2363669E00CF401D /* particle-world.cpp */; };
+		803D17DF236366B900CF401D /* particle-contacts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 803D17DE236366B900CF401D /* particle-contacts.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		803D17BC2363646A00CF401D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		803D17BE2363646A00CF401D /* particle-collision-simulator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "particle-collision-simulator"; sourceTree = BUILT_PRODUCTS_DIR; };
+		803D17C12363646A00CF401D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		803D17C92363647900CF401D /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		803D17CB2363647F00CF401D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		803D17CF236364E300CF401D /* app.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = app.cpp; path = "particle-collision-simulator/source-files/app.cpp"; sourceTree = SOURCE_ROOT; };
+		803D17D12363651300CF401D /* collision-simulation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "collision-simulation.cpp"; sourceTree = "<group>"; };
+		803D17D42363656A00CF401D /* particle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = particle.cpp; sourceTree = "<group>"; };
+		803D17D6236365D200CF401D /* coreMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = coreMath.h; sourceTree = "<group>"; };
+		803D17D72363660000CF401D /* particle-contacts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "particle-contacts.h"; sourceTree = "<group>"; };
+		803D17D82363661A00CF401D /* particle-world.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "particle-world.h"; sourceTree = "<group>"; };
+		803D17D92363663200CF401D /* particle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = particle.h; sourceTree = "<group>"; };
+		803D17DA2363664900CF401D /* app.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = app.h; sourceTree = "<group>"; };
+		803D17DB2363666800CF401D /* collision-simulation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "collision-simulation.h"; sourceTree = "<group>"; };
+		803D17DC2363669E00CF401D /* particle-world.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "particle-world.cpp"; path = "particle-collision-simulator/source-files/particle-world.cpp"; sourceTree = SOURCE_ROOT; };
+		803D17DE236366B900CF401D /* particle-contacts.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "particle-contacts.cpp"; path = "particle-collision-simulator/source-files/particle-contacts.cpp"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		803D17BB2363646A00CF401D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				803D17CC2363647F00CF401D /* OpenGL.framework in Frameworks */,
+				803D17CA2363647900CF401D /* GLUT.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		803D17B52363646A00CF401D = {
+			isa = PBXGroup;
+			children = (
+				803D17C02363646A00CF401D /* particle-collision-simulator */,
+				803D17BF2363646A00CF401D /* Products */,
+				803D17C82363647900CF401D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		803D17BF2363646A00CF401D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				803D17BE2363646A00CF401D /* particle-collision-simulator */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		803D17C02363646A00CF401D /* particle-collision-simulator */ = {
+			isa = PBXGroup;
+			children = (
+				803D17CE236364A400CF401D /* header-files */,
+				803D17CD2363648A00CF401D /* source-files */,
+			);
+			path = "particle-collision-simulator";
+			sourceTree = "<group>";
+		};
+		803D17C82363647900CF401D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				803D17CB2363647F00CF401D /* OpenGL.framework */,
+				803D17C92363647900CF401D /* GLUT.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		803D17CD2363648A00CF401D /* source-files */ = {
+			isa = PBXGroup;
+			children = (
+				803D17DE236366B900CF401D /* particle-contacts.cpp */,
+				803D17D42363656A00CF401D /* particle.cpp */,
+				803D17DC2363669E00CF401D /* particle-world.cpp */,
+				803D17D12363651300CF401D /* collision-simulation.cpp */,
+				803D17CF236364E300CF401D /* app.cpp */,
+				803D17C12363646A00CF401D /* main.cpp */,
+			);
+			path = "source-files";
+			sourceTree = "<group>";
+		};
+		803D17CE236364A400CF401D /* header-files */ = {
+			isa = PBXGroup;
+			children = (
+				803D17D72363660000CF401D /* particle-contacts.h */,
+				803D17D92363663200CF401D /* particle.h */,
+				803D17D82363661A00CF401D /* particle-world.h */,
+				803D17DB2363666800CF401D /* collision-simulation.h */,
+				803D17DA2363664900CF401D /* app.h */,
+				803D17D6236365D200CF401D /* coreMath.h */,
+			);
+			path = "header-files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		803D17BD2363646A00CF401D /* particle-collision-simulator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 803D17C52363646A00CF401D /* Build configuration list for PBXNativeTarget "particle-collision-simulator" */;
+			buildPhases = (
+				803D17BA2363646A00CF401D /* Sources */,
+				803D17BB2363646A00CF401D /* Frameworks */,
+				803D17BC2363646A00CF401D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "particle-collision-simulator";
+			productName = "particle-collision-simulator";
+			productReference = 803D17BE2363646A00CF401D /* particle-collision-simulator */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		803D17B62363646A00CF401D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1110;
+				ORGANIZATIONNAME = "Matthew Honour";
+				TargetAttributes = {
+					803D17BD2363646A00CF401D = {
+						CreatedOnToolsVersion = 11.1;
+					};
+				};
+			};
+			buildConfigurationList = 803D17B92363646A00CF401D /* Build configuration list for PBXProject "particle-collision-simulator" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 803D17B52363646A00CF401D;
+			productRefGroup = 803D17BF2363646A00CF401D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				803D17BD2363646A00CF401D /* particle-collision-simulator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		803D17BA2363646A00CF401D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				803D17C22363646A00CF401D /* main.cpp in Sources */,
+				803D17D52363656A00CF401D /* particle.cpp in Sources */,
+				803D17D32363651300CF401D /* collision-simulation.cpp in Sources */,
+				803D17D0236364E300CF401D /* app.cpp in Sources */,
+				803D17DF236366B900CF401D /* particle-contacts.cpp in Sources */,
+				803D17DD2363669E00CF401D /* particle-world.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		803D17C32363646A00CF401D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		803D17C42363646A00CF401D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		803D17C62363646A00CF401D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		803D17C72363646A00CF401D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		803D17B92363646A00CF401D /* Build configuration list for PBXProject "particle-collision-simulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				803D17C32363646A00CF401D /* Debug */,
+				803D17C42363646A00CF401D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		803D17C52363646A00CF401D /* Build configuration list for PBXNativeTarget "particle-collision-simulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				803D17C62363646A00CF401D /* Debug */,
+				803D17C72363646A00CF401D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 803D17B62363646A00CF401D /* Project object */;
+}
