@@ -14,10 +14,10 @@
 		803D17D32363651300CF401D /* collision-simulation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 803D17D12363651300CF401D /* collision-simulation.cpp */; };
 		803D17D52363656A00CF401D /* particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 803D17D42363656A00CF401D /* particle.cpp */; };
 		803D17DD2363669E00CF401D /* particle-world.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 803D17DC2363669E00CF401D /* particle-world.cpp */; };
-		803D17DF236366B900CF401D /* particle-contacts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 803D17DE236366B900CF401D /* particle-contacts.cpp */; };
-		80932C642369E81E00FBDF2D /* stationary-object.h in Sources */ = {isa = PBXBuildFile; fileRef = 80932C632369E81E00FBDF2D /* stationary-object.h */; };
+		803D17DF236366B900CF401D /* particle-contact-resolution.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 803D17DE236366B900CF401D /* particle-contact-resolution.cpp */; };
+		80932C642369E81E00FBDF2D /* particle-contact-generator.h in Sources */ = {isa = PBXBuildFile; fileRef = 80932C632369E81E00FBDF2D /* particle-contact-generator.h */; };
 		80932C662369E85100FBDF2D /* particle.h in Sources */ = {isa = PBXBuildFile; fileRef = 80932C652369E85100FBDF2D /* particle.h */; };
-		80932C682369ECFD00FBDF2D /* stationary-object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80932C672369ECFD00FBDF2D /* stationary-object.cpp */; };
+		80932C682369ECFD00FBDF2D /* particle-contact-generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80932C672369ECFD00FBDF2D /* particle-contact-generator.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,15 +41,15 @@
 		803D17D12363651300CF401D /* collision-simulation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "collision-simulation.cpp"; sourceTree = "<group>"; };
 		803D17D42363656A00CF401D /* particle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = particle.cpp; sourceTree = "<group>"; };
 		803D17D6236365D200CF401D /* coreMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = coreMath.h; sourceTree = "<group>"; };
-		803D17D72363660000CF401D /* particle-contacts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "particle-contacts.h"; sourceTree = "<group>"; };
+		803D17D72363660000CF401D /* particle-contact-resolution.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "particle-contact-resolution.h"; sourceTree = "<group>"; };
 		803D17D82363661A00CF401D /* particle-world.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "particle-world.h"; sourceTree = "<group>"; };
 		803D17DA2363664900CF401D /* app.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = app.h; sourceTree = "<group>"; };
 		803D17DB2363666800CF401D /* collision-simulation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "collision-simulation.h"; sourceTree = "<group>"; };
 		803D17DC2363669E00CF401D /* particle-world.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "particle-world.cpp"; path = "particle-collision-simulator/source-files/particle-world.cpp"; sourceTree = SOURCE_ROOT; };
-		803D17DE236366B900CF401D /* particle-contacts.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "particle-contacts.cpp"; path = "particle-collision-simulator/source-files/particle-contacts.cpp"; sourceTree = SOURCE_ROOT; };
-		80932C632369E81E00FBDF2D /* stationary-object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "stationary-object.h"; sourceTree = "<group>"; };
+		803D17DE236366B900CF401D /* particle-contact-resolution.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "particle-contact-resolution.cpp"; path = "particle-collision-simulator/source-files/particle-contact-resolution.cpp"; sourceTree = SOURCE_ROOT; };
+		80932C632369E81E00FBDF2D /* particle-contact-generator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "particle-contact-generator.h"; sourceTree = "<group>"; };
 		80932C652369E85100FBDF2D /* particle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = particle.h; sourceTree = "<group>"; };
-		80932C672369ECFD00FBDF2D /* stationary-object.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "stationary-object.cpp"; sourceTree = "<group>"; };
+		80932C672369ECFD00FBDF2D /* particle-contact-generator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "particle-contact-generator.cpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,8 +103,8 @@
 		803D17CD2363648A00CF401D /* source-files */ = {
 			isa = PBXGroup;
 			children = (
-				803D17DE236366B900CF401D /* particle-contacts.cpp */,
-				80932C672369ECFD00FBDF2D /* stationary-object.cpp */,
+				803D17DE236366B900CF401D /* particle-contact-resolution.cpp */,
+				80932C672369ECFD00FBDF2D /* particle-contact-generator.cpp */,
 				803D17D42363656A00CF401D /* particle.cpp */,
 				803D17DC2363669E00CF401D /* particle-world.cpp */,
 				803D17D12363651300CF401D /* collision-simulation.cpp */,
@@ -117,8 +117,8 @@
 		803D17CE236364A400CF401D /* header-files */ = {
 			isa = PBXGroup;
 			children = (
-				803D17D72363660000CF401D /* particle-contacts.h */,
-				80932C632369E81E00FBDF2D /* stationary-object.h */,
+				803D17D72363660000CF401D /* particle-contact-resolution.h */,
+				80932C632369E81E00FBDF2D /* particle-contact-generator.h */,
 				80932C652369E85100FBDF2D /* particle.h */,
 				803D17D82363661A00CF401D /* particle-world.h */,
 				803D17DB2363666800CF401D /* collision-simulation.h */,
@@ -187,11 +187,11 @@
 			files = (
 				803D17C22363646A00CF401D /* main.cpp in Sources */,
 				803D17D52363656A00CF401D /* particle.cpp in Sources */,
-				80932C642369E81E00FBDF2D /* stationary-object.h in Sources */,
+				80932C642369E81E00FBDF2D /* particle-contact-generator.h in Sources */,
 				803D17D32363651300CF401D /* collision-simulation.cpp in Sources */,
 				803D17D0236364E300CF401D /* app.cpp in Sources */,
-				80932C682369ECFD00FBDF2D /* stationary-object.cpp in Sources */,
-				803D17DF236366B900CF401D /* particle-contacts.cpp in Sources */,
+				80932C682369ECFD00FBDF2D /* particle-contact-generator.cpp in Sources */,
+				803D17DF236366B900CF401D /* particle-contact-resolution.cpp in Sources */,
 				80932C662369E85100FBDF2D /* particle.h in Sources */,
 				803D17DD2363669E00CF401D /* particle-world.cpp in Sources */,
 			);

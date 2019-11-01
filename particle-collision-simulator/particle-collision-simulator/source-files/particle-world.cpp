@@ -14,9 +14,14 @@ ParticleWorld::~ParticleWorld(){
 unsigned ParticleWorld::generateContacts(){
     unsigned limit = maxContacts;
     ParticleContact *nextContact = contacts;
-    for (std::vector<StationaryObject*>::iterator statObj = stationaryObjects.begin(); statObj != stationaryObjects.end(); statObj++)
+    
+    // check for particle on particle collision
+    unsigned particleCollisions = particleCollisionGenerator.checkForContact(nextContact, limit);
+    limit -= particleCollisions;
+    // check for particle on platform collision
+    for (std::vector<ParticleContactGenerator*>::iterator generator = particleContactGenerators.begin(); generator != particleContactGenerators.end(); generator++)
     {
-        unsigned used =(*statObj)->checkForContact(nextContact, limit);
+        unsigned used =(*generator)->checkForContact(nextContact, limit);
         limit -= used;
         nextContact += used;
 
@@ -49,6 +54,6 @@ void ParticleWorld::runPhysics(float duration){
 std::vector<Particle*>& ParticleWorld::getParticles(){
     return this->particles;
 }
-std::vector<StationaryObject*>& ParticleWorld::getContactGenerators(){
-    return this->stationaryObjects;
+std::vector<ParticleContactGenerator*>& ParticleWorld::getContactGenerators(){
+    return this->particleContactGenerators;
 }

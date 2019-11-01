@@ -1,21 +1,20 @@
 #pragma once
 #include "particle.h"
-#include "particle-contacts.h"
-#include "stationary-object.h"
+#include "particle-contact-resolution.h"
+
 #include <vector>
 
 // interface class for stationary objects in the simulation
-class StationaryObject{
+class ParticleContactGenerator{
 public:
     virtual unsigned checkForContact(ParticleContact *contact, unsigned limit) const = 0;
 };
 
-class Platform : public StationaryObject{
+class Platform : public ParticleContactGenerator{
 private:
     Vector2 start;
     Vector2 end;
     float restitution;
-    // list of the moving objects that the platform needs to check collisions with
     std::vector<Particle*> particles;
 public:
     void setStart(Vector2 start);
@@ -30,5 +29,13 @@ public:
     void addParticle(Particle* m);
     std::vector<Particle*> getParticles();
     
+    unsigned checkForContact(ParticleContact *contact,unsigned limit) const;
+};
+
+class ParticleCollision : public ParticleContactGenerator{
+private:
+    
+public:
+    std::vector<Particle*> particles;
     unsigned checkForContact(ParticleContact *contact,unsigned limit) const;
 };

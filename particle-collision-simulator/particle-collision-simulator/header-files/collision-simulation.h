@@ -3,7 +3,7 @@
 #include "particle.h"
 #include "particle-world.h"
 #include "coreMath.h"
-#include "stationary-object.h"
+#include "particle-contact-generator.h"
 
 const Vector2 Vector2::GRAVITY = Vector2(0,-9.81);
 

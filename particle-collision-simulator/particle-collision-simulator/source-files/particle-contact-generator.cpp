@@ -1,5 +1,6 @@
-#include "stationary-object.h"
+#include "particle-contact-generator.h"
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
@@ -93,4 +94,33 @@ unsigned Platform::checkForContact(ParticleContact *contact ,unsigned limit) con
             }
         }
         return used;
+}
+//--------------Particle-On-Particle-Collision--------------
+
+
+// some sort of error here as the particles collide but one particle pushes the other one along.
+
+
+unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned limit) const{
+    unsigned used = 0;
+    // need to check if the collision has occured between each and every particle
+    for(int i =0; i< particles.size();i++){
+        //setting it to i+1 so we dont check the collisions twice or between the same particle
+        for(int j = i+1; j< particles.size();j++){
+            //todo: get rid of the sqrt eventually as its less efficient
+            Vector2 posI = particles[i]->getPosition();
+            Vector2 posJ = particles[j]->getPosition();
+            float distance = sqrt(pow((posI.x-posJ.x), 2)+ pow((posI.y-posJ.y), 2));
+            if ((distance - particles[i]->getRadius() - particles[j]->getRadius()) <= 0){
+                // a collision has occured so we need to populate a particle contact object
+                contact->contactNormal = (posI - posJ).unit();
+                contact->restitution = 1.0f; // not sure about restitution between particles
+                contact->particle[0] = particles[i];
+                contact->particle[1] = 0;
+                contact->penetration = distance * -1;
+                used ++;
+            }
+        }
+    }
+    return used;
 }

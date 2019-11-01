@@ -11,25 +11,71 @@ CollisionSimulation::CollisionSimulation():world(2,1){
     width = 600;
     height = 600;
     Particle *blob = new Particle;
+    Particle *blob2 = new Particle;
     
-    Platform *platformOne = new Platform;
-    platformOne->setStart(Vector2 ( -40.0 , 0 ));
-    platformOne->setEnd(Vector2 ( 40.0 , 0));
-    platformOne->addParticle(blob);
-    platformOne->setRestitution(1.0f);
-    platforms.push_back(platformOne);
-    world.getContactGenerators().push_back(platformOne);
+    Platform *topEdge = new Platform;
+    topEdge->setStart(Vector2 ( -nRange+5 , nRange-5 ));
+    topEdge->setEnd(Vector2 ( nRange-5 , nRange-5));
+    topEdge->addParticle(blob);
+    topEdge->addParticle(blob2);
+    topEdge->setRestitution(1.0f);
+    platforms.push_back(topEdge);
+    world.getContactGenerators().push_back(topEdge);
+    
+    Platform *rightEdge = new Platform;
+    rightEdge->setStart(Vector2 ( nRange-5 , nRange-5 ));
+    rightEdge->setEnd(Vector2 ( nRange-5 , -nRange+5));
+    rightEdge->addParticle(blob);
+    rightEdge->addParticle(blob2);
+    rightEdge->setRestitution(1.0f);
+    platforms.push_back(rightEdge);
+    world.getContactGenerators().push_back(rightEdge);
+    
+    Platform *bottomEdge = new Platform;
+    bottomEdge->setStart(Vector2 ( nRange-5 , -nRange+5 ));
+    bottomEdge->setEnd(Vector2 ( -nRange+5 , -nRange+5));
+    bottomEdge->addParticle(blob);
+    bottomEdge->addParticle(blob2);
+    bottomEdge->setRestitution(1.0f);
+    platforms.push_back(bottomEdge);
+    world.getContactGenerators().push_back(bottomEdge);
+    
+    Platform *leftEdge = new Platform;
+    leftEdge->setStart(Vector2 ( -nRange+5 , -nRange+5 ));
+    leftEdge->setEnd(Vector2 ( -nRange+5 , nRange-5));
+    leftEdge->addParticle(blob);
+    leftEdge->addParticle(blob2);
+    leftEdge->setRestitution(1.0f);
+    platforms.push_back(leftEdge);
+    world.getContactGenerators().push_back(leftEdge);
 
-    // Create blob
-    blob->setPosition(0.0, 10.0);
+    // Create blobs
+    blob->setPosition(-40.0, 0);
     blob->setRadius( 5 );
-    blob->setVelocity(0,0);
-    blob->setAcceleration(Vector2::GRAVITY * 20.0f );
+    blob->setVelocity(40,0);
+    blob->setAcceleration(0,0);
     blob->setMass(30.0f);
     blob->clearAccumulator();
+    blob->setRed(1);
+    blob->setGreen(0);
+    blob->setBlue(0);
+    
+    blob2->setPosition(40.0, 0);
+    blob2->setRadius( 5 );
+    blob2->setVelocity(-30,0);
+    blob2->setAcceleration(0,0);
+    blob2->setMass(30.0f);
+    blob2->clearAccumulator();
+    blob2->setRed(0);
+    blob2->setGreen(1);
+    blob2->setBlue(0);
     
     particles.push_back(blob);
+    particles.push_back(blob2);
     world.getParticles().push_back(blob);
+    world.getParticles().push_back(blob2);
+    
+    world.particleCollisionGenerator.particles = world.getParticles();
 }
 
 CollisionSimulation::~CollisionSimulation(){
@@ -47,36 +93,29 @@ void CollisionSimulation::update(void)
     
     Application::update();
 }
+
 void CollisionSimulation::display(void)
 {
     Application::display();
-    // display all of the platforms
-//    for(int j = 0; j<platforms.size(); j++){
-//        glPushMatrix();
-//        glBegin(GL_LINES);
-//        glVertex2f(platforms[j]->getStart().x, platforms[j]->getStart().y);
-//        glVertex2f(platforms[j]->getEnd().x, platforms[j]->getEnd().y);
-//        glEnd();
-//        glColor3f(1,0,0);
-//        glPopMatrix();
-//    }
-    const Vector2 &p0 = platforms[0]->getStart();
-    const Vector2 &p1 = platforms[0]->getEnd();
-
-    glBegin(GL_LINES);
-    glColor3f(0,1,1);
-    glVertex2f(p0.x, p0.y);
-    glVertex2f(p1.x, p1.y);
-    glEnd();
-
-    glColor3f(1,0,0);
+    //display all platforms
+    for(int j = 0; j<platforms.size(); j++){
+        Vector2 p0 = platforms[j]->getStart();
+        Vector2 p1 = platforms[j]->getEnd();
+        
+        glBegin(GL_LINES);
+        glColor3f(1,0.9,0.2);
+        glVertex2f(p0.x, p0.y);
+        glVertex2f(p1.x, p1.y);
+        glColor3f(1,0.9,0.2);
+        glEnd();
+    }
+    
     //display all of the particles
     for (int i =0; i< particles.size(); i++){
         const Vector2 &position = particles[i]->getPosition();
         glPushMatrix();
         glTranslatef(position.x, position.y, 0.0f);
-//        glColor3ub(particles[i]->getRed(), particles[i]->getGreen(), particles[i]->getBlue());
-        glColor3f(1, .5, 0);
+        glColor3f(particles[i]->getRed(), particles[i]->getGreen(), particles[i]->getBlue());
         glutSolidSphere(particles[i]->getRadius(), 30, 30);
         glPopMatrix();
     }

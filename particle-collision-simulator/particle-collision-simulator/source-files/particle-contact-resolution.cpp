@@ -1,5 +1,5 @@
 #include <float.h>
-#include "particle-contacts.h"
+#include "particle-contact-resolution.h"
 //-------------------Particle-Contact-------------------------
 // function which resolves the contact, both in terms of velocity and penetration.
 void ParticleContact::resolve(float duration){
