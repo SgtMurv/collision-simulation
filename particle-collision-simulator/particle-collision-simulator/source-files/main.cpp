@@ -15,9 +15,9 @@ Application* app;
 void display(void){
     app->display();
 }
-void createWindow(const char* title){
+void createWindow(const char* title, int h, int w){
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB|GLUT_DEPTH);
-    glutInitWindowSize(600, 600);
+    glutInitWindowSize(w, h);
     glutCreateWindow(title);
 }
 void resize(int width, int height){
@@ -31,7 +31,7 @@ void TimerFunc(int value)
 int main(int argc, char* argv[]){
     glutInit(&argc, argv);
     app = getApplication();
-    createWindow("Sphere");
+    createWindow("Sphere", app->getHeight(), app->getWidth());
     glutReshapeFunc(resize);
     glutDisplayFunc(display);
     glutTimerFunc(app->getTimeInterval(), TimerFunc, 1);

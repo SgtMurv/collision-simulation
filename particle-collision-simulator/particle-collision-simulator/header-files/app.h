@@ -11,7 +11,7 @@ protected:  //only inheriting classes have access to these properties.
     GLfloat nRange = 100.0f;
     int height;
     int width;
-    float timeInterval = 30.0f;
+    float timeInterval = 10.0f;
     float numberOfTimeSteps = 0.0f;
 public:
     virtual void initGraphics();
@@ -20,5 +20,7 @@ public:
     virtual void resize(int width, int height);
     float getTimeInterval();
     void setTimeInterval(float timeInterval);
+    int getHeight();
+    int getWidth();
 };
 

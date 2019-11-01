@@ -1,13 +1,25 @@
-//
-//  particle-world.h
-//  particle-collision-simulator
-//
-//  Created by Matthew Honour on 25/10/2019.
-//  Copyright © 2019 Matthew Honour. All rights reserved.
-//
+#ifndef PARTICLE_WORLD_H
+#define PARTICLE_WORLD_H
 
-#ifndef particle_world_h
-#define particle_world_h
+#include <vector>
+#include "particle-contacts.h"
+#include "stationary-object.h"
+class ParticleWorld{
+protected:
+    std::vector<Particle*> particles;
+    std::vector<StationaryObject*> stationaryObjects;
+    bool calculateNumberOfCollisionsThatCanBeResolved;
+    ParticleContactResolver resolver;
+    ParticleContact *contacts;
+    unsigned maxContacts;
+public:
+    ParticleWorld(unsigned maxContacts, unsigned numberOfCollisionsThatCanBeResolved=0);
+    ~ParticleWorld();
+    unsigned generateContacts();
+    void integrate(float duration);
+    void runPhysics(float duration);
+    std::vector<Particle*>& getParticles();
+    std::vector<StationaryObject*>& getContactGenerators();
+};
 
-
-#endif /* particle_world_h */
+#endif // PARTICLE_WORLD_H

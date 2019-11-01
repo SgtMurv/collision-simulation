@@ -1,15 +1,20 @@
-
+#pragma once
 #include <vector>
 #include "particle.h"
+#include "particle-world.h"
+#include "coreMath.h"
+#include "stationary-object.h"
 
-
+const Vector2 Vector2::GRAVITY = Vector2(0,-9.81);
 
 class CollisionSimulation : public Application
 {
-    float g = 10.0f;
-    std::vector<Particle> particles;
+    std::vector<Particle*> particles;
+    std::vector<Platform*> platforms;
+    ParticleWorld world;
 public:
     CollisionSimulation();
+    ~CollisionSimulation();
     virtual void display();
     virtual void update();
     void box_collision_resolve(Particle &particle);

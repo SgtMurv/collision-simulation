@@ -10,28 +10,6 @@
 #include "coreMath.h"
 #include "assert.h"
 #include <float.h>
-
-// calculates the next position of the particle.
-// Duration denotes the time interval since the last update.
-void Particle::integrate(float duration){
-    // No particle can have 0 mass
-    if (inverseMass <= 0.0f) return;
-    assert(duration > 0.0);
-    
-    // using the formula acc = force/mass (but as we are passing the inverse mass it counts as divide)
-    Vector2 resultingAcc = acceleration;
-    resultingAcc.addScaledVector(forceAccum, inverseMass);
-    
-    // alter the velocity using the resulting acceleration
-    velocity.addScaledVector(resultingAcc, duration);
-    
-    // update the position of the particle based on its velocity
-    position.addScaledVector(velocity, duration);
-    
-    // clear the forceAccum for the next iteration of the simulation
-    clearAccumulator();
-}
-
 //----------Position----------------
 void Particle::setPosition(const float x, const float y){
     this->position.x = x;
@@ -45,6 +23,9 @@ Vector2 Particle::getPosition() const{
 void Particle::setVelocity(const float x, const float y){
     this->velocity.x = x;
     this->velocity.y = y;
+}
+void Particle::setVelocity(Vector2 velocity){
+    this->velocity = velocity;
 }
 Vector2 Particle::getVelocity() const{
     return this->velocity;
@@ -65,7 +46,7 @@ Vector2 Particle::getAcceleration()const{
 //----------Mass----------------
 void Particle::setMass(const float mass){
     assert(mass != 0);
-    Particle::inverseMass = ((float)1.0)/mass;
+    this->inverseMass = ((float)1.0)/mass;
 }
 float Particle::getMass() const{
     if (inverseMass == 0) {
@@ -75,7 +56,7 @@ float Particle::getMass() const{
     }
 }
 void Particle::setInverseMass(const float inverseMass){
-    Particle::inverseMass = inverseMass;
+    this->inverseMass = inverseMass;
 }
 float Particle::getInverseMass() const{
     return inverseMass;
@@ -91,7 +72,30 @@ void Particle::clearAccumulator(){
 void Particle::addForce(const Vector2 &force){
     forceAccum += force;
 }
+Vector2 Particle::getForceAccum(){
+    return this->forceAccum;
+}
 
+// calculates the next position of the particle.
+// Duration denotes the time interval since the last update.
+void Particle::integrate(float duration){
+    // No particle can have 0 mass
+    if (inverseMass <= 0.0f) return;
+    assert(duration > 0.0);
+    
+    // update the position of the particle based on its velocity
+    position.addScaledVector(velocity, duration);
+    
+    // using the formula acc = force/mass (but as we are passing the inverse mass it counts as divide)
+    Vector2 resultingAcc = acceleration;
+    resultingAcc.addScaledVector(forceAccum, inverseMass);
+    
+    // alter the velocity using the resulting acceleration
+    velocity.addScaledVector(resultingAcc, duration);
+    
+    // clear the forceAccum for the next iteration of the simulation
+    clearAccumulator();
+}
 
 //----------Radius----------------
 void Particle::setRadius(const float r){
@@ -120,4 +124,3 @@ void Particle::setBlue(int blue){
 int Particle::getBlue()const{
     return this->blue;
 }
-

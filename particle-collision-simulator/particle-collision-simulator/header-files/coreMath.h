@@ -31,8 +31,9 @@ class Vector2
         Vector2(const float x, const float y)
             : x(x), y(y) {}
 
-
-
+        const static Vector2 GRAVITY;
+        const static Vector2 UP;
+        
         float operator[](unsigned i) const
         {
             if (i == 0) return x;

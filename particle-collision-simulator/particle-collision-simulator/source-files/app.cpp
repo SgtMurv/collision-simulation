@@ -54,3 +54,9 @@ float Application::getTimeInterval(){
 void Application::setTimeInterval(float timeInterval){
     this->timeInterval = timeInterval;
 }
+int Application::getHeight(){
+    return this->height;
+}
+int Application::getWidth(){
+    return this->width;
+}
