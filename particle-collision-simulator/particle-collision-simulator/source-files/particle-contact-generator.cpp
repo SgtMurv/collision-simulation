@@ -116,7 +116,7 @@ unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned li
                 contact->contactNormal = (posI - posJ).unit();
                 contact->restitution = 1.0f; // not sure about restitution between particles
                 contact->particle[0] = particles[i];
-                contact->particle[1] = 0;
+                contact->particle[1] = particles[j];
                 contact->penetration = distance * -1;
                 used ++;
             }
