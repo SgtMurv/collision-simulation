@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80294658237090CA00D4D312 /* partitioned-grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 80294656237090CA00D4D312 /* partitioned-grid.cpp */; };
 		803D17C22363646A00CF401D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 803D17C12363646A00CF401D /* main.cpp */; };
 		803D17CA2363647900CF401D /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803D17C92363647900CF401D /* GLUT.framework */; };
 		803D17CC2363647F00CF401D /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803D17CB2363647F00CF401D /* OpenGL.framework */; };
@@ -33,6 +34,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		80294656237090CA00D4D312 /* partitioned-grid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "partitioned-grid.cpp"; sourceTree = "<group>"; };
+		80294657237090CA00D4D312 /* partitioned-grid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "partitioned-grid.h"; sourceTree = "<group>"; };
 		803D17BE2363646A00CF401D /* particle-collision-simulator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "particle-collision-simulator"; sourceTree = BUILT_PRODUCTS_DIR; };
 		803D17C12363646A00CF401D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		803D17C92363647900CF401D /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
@@ -107,6 +110,7 @@
 				80932C672369ECFD00FBDF2D /* particle-contact-generator.cpp */,
 				803D17D42363656A00CF401D /* particle.cpp */,
 				803D17DC2363669E00CF401D /* particle-world.cpp */,
+				80294656237090CA00D4D312 /* partitioned-grid.cpp */,
 				803D17D12363651300CF401D /* collision-simulation.cpp */,
 				803D17CF236364E300CF401D /* app.cpp */,
 				803D17C12363646A00CF401D /* main.cpp */,
@@ -121,6 +125,7 @@
 				80932C632369E81E00FBDF2D /* particle-contact-generator.h */,
 				80932C652369E85100FBDF2D /* particle.h */,
 				803D17D82363661A00CF401D /* particle-world.h */,
+				80294657237090CA00D4D312 /* partitioned-grid.h */,
 				803D17DB2363666800CF401D /* collision-simulation.h */,
 				803D17DA2363664900CF401D /* app.h */,
 				803D17D6236365D200CF401D /* coreMath.h */,
@@ -192,6 +197,7 @@
 				803D17D0236364E300CF401D /* app.cpp in Sources */,
 				80932C682369ECFD00FBDF2D /* particle-contact-generator.cpp in Sources */,
 				803D17DF236366B900CF401D /* particle-contact-resolution.cpp in Sources */,
+				80294658237090CA00D4D312 /* partitioned-grid.cpp in Sources */,
 				80932C662369E85100FBDF2D /* particle.h in Sources */,
 				803D17DD2363669E00CF401D /* particle-world.cpp in Sources */,
 			);

@@ -31,7 +31,7 @@ void Platform::addParticle(Particle* m){
 vector<Particle*> Platform::getParticles(){
     return this->particles;
 }
-
+//---------------Particle-On-Platform-Collision---------------------
 unsigned Platform::checkForContact(ParticleContact *contact ,unsigned limit) const{
     unsigned used = 0;
         for(int i = 0; i < particles.size();i++){
@@ -57,12 +57,10 @@ unsigned Platform::checkForContact(ParticleContact *contact ,unsigned limit) con
                 }
                 
             }
-            else if (projected >= platformSqLength)
-            {
+            else if (projected >= platformSqLength){
                 // The blob is nearest to the end point
                 toParticle = particles[i]->getPosition() - end;
-                if (toParticle.squareMagnitude() < squareRadius)
-                {
+                if (toParticle.squareMagnitude() < squareRadius){
                     // We have a collision
                     contact->contactNormal = toParticle.unit();
                     contact->restitution = restitution;
@@ -73,12 +71,10 @@ unsigned Platform::checkForContact(ParticleContact *contact ,unsigned limit) con
                     contact ++;
                 }
             }
-            else
-            {
+            else{
                 // the blob is nearest to the middle.
                 float distanceToPlatform = toParticle.squareMagnitude() - projected*projected / platformSqLength;
-                if (distanceToPlatform < squareRadius)
-                {
+                if (distanceToPlatform < squareRadius){
                     // We have a collision
                     Vector2 closestPoint = start + lineDirection*(projected/platformSqLength);
                     Vector2 position =particles[i]->getPosition();
@@ -97,30 +93,64 @@ unsigned Platform::checkForContact(ParticleContact *contact ,unsigned limit) con
 }
 //--------------Particle-On-Particle-Collision--------------
 
-
-// some sort of error here as the particles collide but one particle pushes the other one along.
-
-
+//unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned limit) const{
+//    unsigned used = 0;
+//    unsigned bruteForceComparisons = 0;
+//    // need to check if the collision has occured between each and every particle
+//    for(int i =0; i< particles.size();i++){
+//        // i+1 so we dont check the repeat collisions (1,2 and 2,1) or between the same particle(1,1)
+//        for(int j = i+1; j< particles.size();j++){
+//            //comparrison is being made so update the counter
+//            bruteForceComparisons++;
+//            //todo: get rid of the sqrt eventually as its less efficient
+//            Vector2 posI = particles[i]->getPosition();
+//            Vector2 posJ = particles[j]->getPosition();
+//            float distance = sqrt(pow((posI.x-posJ.x), 2)+ pow((posI.y-posJ.y), 2));
+//            if ((distance - particles[i]->getRadius() - particles[j]->getRadius()) <= 0){
+//                // a collision has occured so we need to populate a particle contact object
+//                contact->contactNormal = (posI - posJ).unit();
+//                contact->restitution = 1.0f; // not sure about restitution between particles
+//                contact->particle[0] = particles[i];
+//                contact->particle[1] = particles[j];
+//                contact->penetration = distance * -1;
+//                used ++;
+//            }
+//        }
+//    }
+//    // output the number of comparisons done in this methdology
+//    cout << "Number of Comparisons -> "<< bruteForceComparisons << endl;
+//    return used;
+//}
 unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned limit) const{
     unsigned used = 0;
-    // need to check if the collision has occured between each and every particle
-    for(int i =0; i< particles.size();i++){
-        //setting it to i+1 so we dont check the collisions twice or between the same particle
-        for(int j = i+1; j< particles.size();j++){
-            //todo: get rid of the sqrt eventually as its less efficient
-            Vector2 posI = particles[i]->getPosition();
-            Vector2 posJ = particles[j]->getPosition();
-            float distance = sqrt(pow((posI.x-posJ.x), 2)+ pow((posI.y-posJ.y), 2));
-            if ((distance - particles[i]->getRadius() - particles[j]->getRadius()) <= 0){
-                // a collision has occured so we need to populate a particle contact object
-                contact->contactNormal = (posI - posJ).unit();
-                contact->restitution = 1.0f; // not sure about restitution between particles
-                contact->particle[0] = particles[i];
-                contact->particle[1] = particles[j];
-                contact->penetration = distance * -1;
-                used ++;
+    unsigned bruteForceComparisons = 0;
+    // loop through the particle grid
+    for(int i =0; i< particleGrid.size(); i++){
+        //check if there are more than one particle in the grid area
+        if(particleGrid[i].size() > 1){
+            // need to check if the collision has occured between each and every particle
+            for(int j =0; j< particleGrid[i].size();j++){
+                // j+1 so we dont check the repeat collisions (1,2 and 2,1) or between the same particle(1,1)
+                for(int x = j+1; x< particleGrid[i].size();x++){
+                    // comparrison is being made so update the counter
+                    bruteForceComparisons++;
+                    //todo: get rid of the sqrt eventually as its less efficient
+                    Vector2 posJ = particleGrid[i][j]->getPosition();
+                    Vector2 posX = particleGrid[i][x]->getPosition();
+                    float distance = sqrt(pow((posJ.x-posX.x), 2)+ pow((posX.y-posJ.y), 2));
+                    if ((distance - particleGrid[i][j]->getRadius() - particleGrid[i][x]->getRadius()) <= 0){
+                        // a collision has occured so we need to populate a particle contact object
+                        contact->contactNormal = (posJ - posX).unit();
+                        contact->restitution = 1.0f; // not sure about restitution between particles
+                        contact->particle[0] = particleGrid[i][j];
+                        contact->particle[1] = particleGrid[i][x];
+                        contact->penetration = distance * -1;
+                        used ++;
+                    }
+                }
             }
         }
     }
+    cout << "Number of Comparisons -> "<< bruteForceComparisons << endl;
     return used;
 }

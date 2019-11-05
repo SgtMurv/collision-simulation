@@ -12,12 +12,16 @@ CollisionSimulation::CollisionSimulation():world(2,1){
     height = 600;
     Particle *blob = new Particle;
     Particle *blob2 = new Particle;
+    Particle *blob3 = new Particle;
+    Particle *blob4 = new Particle;
     
     Platform *topEdge = new Platform;
     topEdge->setStart(Vector2 ( -nRange+5 , nRange-5 ));
     topEdge->setEnd(Vector2 ( nRange-5 , nRange-5));
     topEdge->addParticle(blob);
     topEdge->addParticle(blob2);
+    topEdge->addParticle(blob3);
+    topEdge->addParticle(blob4);
     topEdge->setRestitution(1.0f);
     platforms.push_back(topEdge);
     world.getContactGenerators().push_back(topEdge);
@@ -27,6 +31,8 @@ CollisionSimulation::CollisionSimulation():world(2,1){
     rightEdge->setEnd(Vector2 ( nRange-5 , -nRange+5));
     rightEdge->addParticle(blob);
     rightEdge->addParticle(blob2);
+    rightEdge->addParticle(blob3);
+    rightEdge->addParticle(blob4);
     rightEdge->setRestitution(1.0f);
     platforms.push_back(rightEdge);
     world.getContactGenerators().push_back(rightEdge);
@@ -36,6 +42,8 @@ CollisionSimulation::CollisionSimulation():world(2,1){
     bottomEdge->setEnd(Vector2 ( -nRange+5 , -nRange+5));
     bottomEdge->addParticle(blob);
     bottomEdge->addParticle(blob2);
+    bottomEdge->addParticle(blob3);
+    bottomEdge->addParticle(blob4);
     bottomEdge->setRestitution(1.0f);
     platforms.push_back(bottomEdge);
     world.getContactGenerators().push_back(bottomEdge);
@@ -45,24 +53,28 @@ CollisionSimulation::CollisionSimulation():world(2,1){
     leftEdge->setEnd(Vector2 ( -nRange+5 , nRange-5));
     leftEdge->addParticle(blob);
     leftEdge->addParticle(blob2);
+    leftEdge->addParticle(blob3);
+    leftEdge->addParticle(blob4);
     leftEdge->setRestitution(1.0f);
     platforms.push_back(leftEdge);
     world.getContactGenerators().push_back(leftEdge);
 
     // Create blobs
-    blob->setPosition(-40.0, 0);
+    blob->setPosition(-40.0, 40);
     blob->setRadius( 5 );
-    blob->setVelocity(40,0);
+    blob->setVelocity(0,-150);
+//    blob->setAcceleration(Vector2::GRAVITY * 20.0f);
     blob->setAcceleration(0,0);
-    blob->setMass(30.0f);
+    blob->setMass(130.0f);
     blob->clearAccumulator();
     blob->setRed(1);
     blob->setGreen(0);
     blob->setBlue(0);
     
-    blob2->setPosition(40.0, 0);
+    blob2->setPosition(-40.0, 20);
     blob2->setRadius( 5 );
-    blob2->setVelocity(-30,0);
+    blob2->setVelocity(0,150);
+//    blob2->setAcceleration(Vector2::GRAVITY * 20.0f);
     blob2->setAcceleration(0,0);
     blob2->setMass(30.0f);
     blob2->clearAccumulator();
@@ -70,12 +82,40 @@ CollisionSimulation::CollisionSimulation():world(2,1){
     blob2->setGreen(1);
     blob2->setBlue(0);
     
+    blob3->setPosition(40.0, 30);
+    blob3->setRadius( 5 );
+    blob3->setVelocity(-150,0);
+//    blob3->setAcceleration(Vector2::GRAVITY * 20.0f);
+    blob3->setAcceleration(0,0);
+    blob3->setMass(30.0f);
+    blob3->clearAccumulator();
+    blob3->setRed(0);
+    blob3->setGreen(1);
+    blob3->setBlue(1);
+    
+    blob4->setPosition(-40.0, -30);
+    blob4->setRadius( 5 );
+    blob4->setVelocity(-150,0);
+//    blob4->setAcceleration(Vector2::GRAVITY * 20.0f);
+    blob4->setAcceleration(0,0);
+    blob4->setMass(30.0f);
+    blob4->clearAccumulator();
+    blob4->setRed(0);
+    blob4->setGreen(1);
+    blob4->setBlue(.5);
+
+    
     particles.push_back(blob);
     particles.push_back(blob2);
+    particles.push_back(blob3);
+    particles.push_back(blob4);
     world.getParticles().push_back(blob);
     world.getParticles().push_back(blob2);
+    world.getParticles().push_back(blob3);
+    world.getParticles().push_back(blob4);
     
-    world.particleCollisionGenerator.particles = world.getParticles();
+//    grid.generateGridArray(particles, nRange);
+//    world.particleCollisionGenerator.particleGrid = grid.getParticleGrid();
 }
 
 CollisionSimulation::~CollisionSimulation(){
@@ -84,10 +124,16 @@ CollisionSimulation::~CollisionSimulation(){
     }
 }
 
-void CollisionSimulation::update(void)
-{
+void CollisionSimulation::update(void){
     // Recenter the axes
     float duration = this->getTimeInterval()/1000;
+    
+    //set the particles in the world to be the ones that can collide this iteration
+    grid.clearDataStructures();
+    grid.generateGridArray(particles, nRange);
+    world.particleCollisionGenerator.particleGrid = grid.getParticleGrid();
+//    world.getParticles() = grid.getParticleGrid();
+    
     // Run the simulation
     world.runPhysics(duration);
     

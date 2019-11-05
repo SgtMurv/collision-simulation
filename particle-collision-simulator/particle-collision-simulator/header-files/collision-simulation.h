@@ -4,6 +4,7 @@
 #include "particle-world.h"
 #include "coreMath.h"
 #include "particle-contact-generator.h"
+#include "partitioned-grid.h"
 
 const Vector2 Vector2::GRAVITY = Vector2(0,-9.81);
 
@@ -12,6 +13,7 @@ class CollisionSimulation : public Application
     std::vector<Particle*> particles;
     std::vector<Platform*> platforms;
     ParticleWorld world;
+    PartitionedGrid grid;
 public:
     CollisionSimulation();
     ~CollisionSimulation();

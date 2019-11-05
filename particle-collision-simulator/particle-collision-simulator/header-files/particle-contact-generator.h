@@ -3,6 +3,7 @@
 #include "particle-contact-resolution.h"
 
 #include <vector>
+#include <list>
 
 // interface class for stationary objects in the simulation
 class ParticleContactGenerator{
@@ -33,9 +34,8 @@ public:
 };
 
 class ParticleCollision : public ParticleContactGenerator{
-private:
-    
 public:
-    std::vector<Particle*> particles;
+//    std::vector<Particle*> particles;
+    std::vector<std::vector<Particle*>> particleGrid;
     unsigned checkForContact(ParticleContact *contact,unsigned limit) const;
 };
