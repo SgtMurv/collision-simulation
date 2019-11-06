@@ -151,6 +151,7 @@ unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned li
                 }
             }
         }
+        if (used == limit/2)break;
     }
     cout << "Number of Comparisons -> "<< bruteForceComparisons << endl;
     return used;

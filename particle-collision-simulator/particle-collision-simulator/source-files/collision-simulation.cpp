@@ -57,9 +57,12 @@ CollisionSimulation::CollisionSimulation():world(2,2){
     world.getContactGenerators().push_back(leftEdge);
 
     // Create blobs
-    blob->setPosition(0, 50);
+    float commonPosition = 55.0f;
+    
+    blob->setPosition(0, commonPosition);
     blob->setRadius( 5 );
-    blob->setVelocity(0,-150);
+//    blob->setVelocity(0,-150);
+    blob->setVelocity(0,0);
 //    blob->setAcceleration(Vector2::GRAVITY * 20.0f);
     blob->setAcceleration(0,0);
     blob->setMass(130.0f);
@@ -68,7 +71,7 @@ CollisionSimulation::CollisionSimulation():world(2,2){
     blob->setGreen(0);
     blob->setBlue(0);
     
-    blob2->setPosition(50, 0);
+    blob2->setPosition(commonPosition,0);
     blob2->setRadius( 5 );
     blob2->setVelocity(-150,0);
 //    blob2->setAcceleration(Vector2::GRAVITY * 20.0f);
@@ -79,9 +82,10 @@ CollisionSimulation::CollisionSimulation():world(2,2){
     blob2->setGreen(0);
     blob2->setBlue(1);
     
-    blob3->setPosition(0, -50);
+    blob3->setPosition(0, -commonPosition);
     blob3->setRadius( 5 );
-    blob3->setVelocity(0,150);
+//    blob3->setVelocity(0,150);
+    blob3->setVelocity(0,0);
 //    blob3->setAcceleration(Vector2::GRAVITY * 20.0f);
     blob3->setAcceleration(0,0);
     blob3->setMass(30.0f);
@@ -90,7 +94,7 @@ CollisionSimulation::CollisionSimulation():world(2,2){
     blob3->setGreen(1);
     blob3->setBlue(0);
     
-    blob4->setPosition(-50, 0);
+    blob4->setPosition(-commonPosition, 0);
     blob4->setRadius( 5 );
     blob4->setVelocity(150,0);
 //    blob4->setAcceleration(Vector2::GRAVITY * 20.0f);
