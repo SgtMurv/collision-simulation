@@ -4,7 +4,7 @@
 
 using namespace std;
 
-CollisionSimulation::CollisionSimulation():world(2,1){
+CollisionSimulation::CollisionSimulation():world(2,2){
     width = 600;
     height = 600;
     Particle *blob = new Particle;
