@@ -93,6 +93,7 @@ unsigned Platform::checkForContact(ParticleContact *contact ,unsigned limit) con
 }
 //--------------Particle-On-Particle-Collision--------------
 
+//----Brute-Force-Approach-----
 //unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned limit) const{
 //    unsigned used = 0;
 //    unsigned bruteForceComparisons = 0;

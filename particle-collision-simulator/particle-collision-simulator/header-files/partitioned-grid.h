@@ -12,4 +12,5 @@ public:
     void generateGridArray(std::vector<Particle*> particles, float nRange);
     std::vector<std::vector<Particle*>> getParticleGrid();
     void clearDataStructures();
+    std::vector<Vector2*> getGridAreas();
 };

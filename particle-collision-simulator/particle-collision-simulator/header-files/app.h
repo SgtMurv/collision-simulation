@@ -8,7 +8,7 @@
 
 class Application{
 protected:  //only inheriting classes have access to these properties.
-    GLfloat nRange = 100.0f;
+    float nRange = 100.0f;
     int height;
     int width;
     float timeInterval = 10.0f;

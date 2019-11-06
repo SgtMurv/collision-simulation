@@ -1,9 +1,6 @@
-#define GL_SILENCE_DEPRECATION // this line silences the yellow warnings of deprecation of OpenGL from
-#include <GLUT/GLUT.h>
+
 #include "../header-files/app.h"
 #include "../header-files/collision-simulation.h"
-#include <math.h>
-#include <iostream>
 
 using namespace std;
 
@@ -60,7 +57,7 @@ CollisionSimulation::CollisionSimulation():world(2,1){
     world.getContactGenerators().push_back(leftEdge);
 
     // Create blobs
-    blob->setPosition(-40.0, 40);
+    blob->setPosition(0, 50);
     blob->setRadius( 5 );
     blob->setVelocity(0,-150);
 //    blob->setAcceleration(Vector2::GRAVITY * 20.0f);
@@ -71,38 +68,38 @@ CollisionSimulation::CollisionSimulation():world(2,1){
     blob->setGreen(0);
     blob->setBlue(0);
     
-    blob2->setPosition(-40.0, 20);
+    blob2->setPosition(50, 0);
     blob2->setRadius( 5 );
-    blob2->setVelocity(0,150);
+    blob2->setVelocity(-150,0);
 //    blob2->setAcceleration(Vector2::GRAVITY * 20.0f);
     blob2->setAcceleration(0,0);
     blob2->setMass(30.0f);
     blob2->clearAccumulator();
     blob2->setRed(0);
-    blob2->setGreen(1);
-    blob2->setBlue(0);
+    blob2->setGreen(0);
+    blob2->setBlue(1);
     
-    blob3->setPosition(40.0, 30);
+    blob3->setPosition(0, -50);
     blob3->setRadius( 5 );
-    blob3->setVelocity(-150,0);
+    blob3->setVelocity(0,150);
 //    blob3->setAcceleration(Vector2::GRAVITY * 20.0f);
     blob3->setAcceleration(0,0);
     blob3->setMass(30.0f);
     blob3->clearAccumulator();
     blob3->setRed(0);
     blob3->setGreen(1);
-    blob3->setBlue(1);
+    blob3->setBlue(0);
     
-    blob4->setPosition(-40.0, -30);
+    blob4->setPosition(-50, 0);
     blob4->setRadius( 5 );
-    blob4->setVelocity(-150,0);
+    blob4->setVelocity(150,0);
 //    blob4->setAcceleration(Vector2::GRAVITY * 20.0f);
     blob4->setAcceleration(0,0);
     blob4->setMass(30.0f);
     blob4->clearAccumulator();
-    blob4->setRed(0);
+    blob4->setRed(1);
     blob4->setGreen(1);
-    blob4->setBlue(.5);
+    blob4->setBlue(0);
 
     
     particles.push_back(blob);
@@ -140,14 +137,58 @@ void CollisionSimulation::update(void){
     Application::update();
 }
 
+void CollisionSimulation::drawLine(Vector2* start, Vector2* end){
+    // logic for drawing lines in opengl
+    glBegin(GL_LINES);
+    glColor3f(1,0.5,0.5);
+    glVertex2f(start->x, start->y);
+    glVertex2f(end->x, end->y);
+    glColor3f(1,0.9,0.2);
+    glEnd();
+}
+
 void CollisionSimulation::display(void)
 {
     Application::display();
+    
+//    Vector2* start = new Vector2(-50, 50);
+//    Vector2* end = new Vector2(50, -50);
+//
+//    drawLine(start, end);
+//    start = new Vector2(50, 50);
+//    end = new Vector2(-50, -50);
+//    drawLine(start, end);
+    
+    //display all the grid areas
+    vector<Vector2*> gridAreas =  grid.getGridAreas();
+    for(int i =0; i < gridAreas.size();i++){
+        // top line
+        Vector2* start = gridAreas[i];
+        Vector2* end = new Vector2(gridAreas[i]->x + nRange, gridAreas[i]->y);
+        drawLine(start, end);
+        delete end; // free up memory you've allocated.
+        // right line
+        start = end;
+        end = new Vector2(end->x, end->y-nRange);
+        drawLine(start, end);
+        delete end; // free up memory you've allocated.
+        // bottom line
+        start = end;
+        end = new Vector2(end->x-nRange, end->y);
+        drawLine(start, end);
+        delete end; // free up memory you've allocated.
+        // left line
+        start = end;
+        end = gridAreas[i];
+        drawLine(start, end);
+
+    }
+    
     //display all platforms
     for(int j = 0; j<platforms.size(); j++){
         Vector2 p0 = platforms[j]->getStart();
         Vector2 p1 = platforms[j]->getEnd();
-        
+        // logic for drawing lines in opengl
         glBegin(GL_LINES);
         glColor3f(1,0.9,0.2);
         glVertex2f(p0.x, p0.y);
