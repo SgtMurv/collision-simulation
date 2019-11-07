@@ -114,9 +114,7 @@ CollisionSimulation::CollisionSimulation():world(2,2){
     world.getParticles().push_back(blob2);
     world.getParticles().push_back(blob3);
     world.getParticles().push_back(blob4);
-    
-//    grid.generateGridArray(particles, nRange);
-//    world.particleCollisionGenerator.particleGrid = grid.getParticleGrid();
+
 }
 
 CollisionSimulation::~CollisionSimulation(){
@@ -133,7 +131,6 @@ void CollisionSimulation::update(void){
     grid.clearDataStructures();
     grid.generateGridArray(particles, nRange);
     world.particleCollisionGenerator.particleGrid = grid.getParticleGrid();
-//    world.getParticles() = grid.getParticleGrid();
     
     // Run the simulation
     world.runPhysics(duration);

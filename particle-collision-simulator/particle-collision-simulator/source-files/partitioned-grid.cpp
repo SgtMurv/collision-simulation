@@ -23,7 +23,7 @@ void PartitionedGrid::generateGridArray(vector<Particle*> particles, float nRang
             if((posI.x > gridAreas[j]->x || posI.x + radius > gridAreas[j]->x) &&
                (posI.y < gridAreas[j]->y || posI.y - radius < gridAreas[j]->y) &&
                (posI.x < gridAreas[j]->x + nRange || posI.x - radius < gridAreas[j]->x + nRange)  &&
-               (posI.y > gridAreas[j]->y - nRange || posI.y + radius > gridAreas[j]->y) - nRange){
+               (posI.y > gridAreas[j]->y - nRange || posI.y + radius > gridAreas[j]->y - nRange)){
                 // the position of the particle is in this quadrant
                 particleGrid[j].push_back(particles[i]);
             }
