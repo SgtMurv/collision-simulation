@@ -4,7 +4,7 @@
 
 using namespace std;
 
-CollisionSimulation::CollisionSimulation():world(2,2){
+CollisionSimulation::CollisionSimulation():world(22,2){
     width = 600;
     height = 600;
     Particle *blob = new Particle;
@@ -61,11 +61,11 @@ CollisionSimulation::CollisionSimulation():world(2,2){
     
     blob->setPosition(0, commonPosition);
     blob->setRadius( 5 );
-//    blob->setVelocity(0,-150);
-    blob->setVelocity(0,0);
+    blob->setVelocity(0,-150);
+//    blob->setVelocity(0,0);
 //    blob->setAcceleration(Vector2::GRAVITY * 20.0f);
     blob->setAcceleration(0,0);
-    blob->setMass(130.0f);
+    blob->setMass(30.0f);
     blob->clearAccumulator();
     blob->setRed(1);
     blob->setGreen(0);
@@ -84,8 +84,8 @@ CollisionSimulation::CollisionSimulation():world(2,2){
     
     blob3->setPosition(0, -commonPosition);
     blob3->setRadius( 5 );
-//    blob3->setVelocity(0,150);
-    blob3->setVelocity(0,0);
+    blob3->setVelocity(0,150);
+//    blob3->setVelocity(0,0);
 //    blob3->setAcceleration(Vector2::GRAVITY * 20.0f);
     blob3->setAcceleration(0,0);
     blob3->setMass(30.0f);

@@ -147,11 +147,13 @@ unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned li
                         contact->particle[1] = particleGrid[i][x];
                         contact->penetration = distance * -1;
                         used ++;
+                        // increment the contact pointer so that it now points to the next entry in the
+                        contact++;
                     }
                 }
             }
         }
-        if (used == limit/2)break;
+//        if (used == limit/2)break;
     }
     cout << "Number of Comparisons -> "<< bruteForceComparisons << endl;
     return used;

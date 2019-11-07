@@ -3,6 +3,7 @@
 #define PCONTACTS_H
 
 #include "particle.h"
+#include <vector>
 
 class ParticleContactResolver;
 
