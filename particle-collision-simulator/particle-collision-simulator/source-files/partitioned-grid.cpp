@@ -67,50 +67,87 @@ QuadTree::QuadTree(float x, float y, float width, float height, int level, int m
         SE = nullptr;
     }
 }
-// tester method just to print the level of each quad tree in the quad tree.
-void QuadTree::printLevels(){
+// test method to print the level & Particles for each quad tree in the quad tree.
+void QuadTree::printDetails(){
     cout << "Level -> "<< level << endl;
+    if(particles.size() > 0){
+        for(int i = 0; i< particles.size();i++){
+            Vector2 pos = particles[i]->getPosition();
+            cout << "--Particle["<< pos.x << ", " << pos.y <<"]" << endl;
+        }
+    }
     if(level < maxLevel){
-        NW->printLevels();
-        NE->printLevels();
-        SW->printLevels();
-        SE->printLevels();
+        NW->printDetails();
+        NE->printDetails();
+        SW->printDetails();
+        SE->printDetails();
     }
 }
 
-bool QuadTree::contains(QuadTree *child, Particle *particle){
-    return !(
-    particle->getPosition().x < child->x ||
-    particle->getPosition().y < child->y ||
-    particle->getPosition().x > child->x + child->width ||
-    particle->getPosition().y > child->y + child->height ||
-    particle->getPosition().x - particle->getRadius() < child->x ||
-    particle->getPosition().y - particle->getRadius() < child->y ||
-    particle->getPosition().x + particle->getRadius() > child->x + child->width ||
-    particle->getPosition().y + particle->getRadius() > child->y + child->height
-    );
-}
+
 
 void QuadTree::addParticle(Particle* particle){
-    // we dont want to make an infinite amount of partitions so if the level is max level we add the particle to this quad tree and we return to stop the recursion
-    if (level == maxLevel) {
+    // if we are at the bottom of the quad tree then we add the particle to our particle to this quad tree's vector of particles (as it has been passed this particle from another quad tree already)
+    if(level == maxLevel){
         particles.push_back(particle);
         return;
     }
-    if (contains(NW, particle)) {
-        NW->size++;
-        NW->addParticle(particle); return;
-    } else if (contains(NE, particle)) {
-        NE->size++;
-        NE->addParticle(particle); return;
-    } else if (contains(SW, particle)) {
-        SW->size++;
-        SW->addParticle(particle); return;
-    } else if (contains(SE, particle)) {
-        SE->size++;
-        SE->addParticle(particle); return;
+    Vector2 position = particle->getPosition();
+    float radius = particle->getRadius();
+    // check if the particle or the particle+radius (just in case the particle overlaps the vertical axis a bit)  is to the left or right of the vertical midpoint:
+    if(position.x < (x + (width/2)) ||
+       position.x - radius < (x + (width/2))){
+        // check if the particle is above or bellow the horizontal axis
+        if(position.y > (y - (height/2)) ||
+           position.y + radius > (y - (height/2))){
+            //add the particle to the NW QuadTree
+            NW->addParticle(particle);
+        }
+        if(position.y < (y - (height/2)) ||
+           position.y - radius < (y - (height/2))){
+            //add the particle to the SW QuadTree
+            SW->addParticle(particle);
+        }
     }
-    if (contains(this, particle)) {
-        particles.push_back(particle);
+    if(position.x > (x + (width/2)) ||
+       position.x + radius > (x + (width/2))){
+        // check if the particle is above or bellow the horizontal axis
+        if(position.y > (y - (height/2)) ||
+           position.y + radius > (y - (height/2))){
+            //add the particle to the NE QuadTree
+            NE->addParticle(particle);
+        }
+        if(position.y < (y - (height/2)) ||
+           position.y - radius < (y - (height/2))){
+            //add the particle to the SE QuadTree
+            SE->addParticle(particle);
+        }
     }
 }
+
+void QuadTree::getPotentialCollidingParticles(vector<vector<Particle*>>& potentialCollisions){
+    
+    if(level < maxLevel){
+        NW->getPotentialCollidingParticles(potentialCollisions);
+        NE->getPotentialCollidingParticles(potentialCollisions);
+        SW->getPotentialCollidingParticles(potentialCollisions);
+        SE->getPotentialCollidingParticles(potentialCollisions);
+    }
+    // this tree must be at the bottom and must contain at least 2 nodes so add it to the list.
+    else if(particles.size() > 1){
+        potentialCollisions.push_back(particles);
+    }
+    return;
+}
+void QuadTree::clearParticles(){
+    if(level < maxLevel){
+        NW->clearParticles();
+        NE->clearParticles();
+        SW->clearParticles();
+        SE->clearParticles();
+    }
+    else if(particles.size() > 0){
+        particles.clear();
+    }
+}
+

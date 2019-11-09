@@ -35,12 +35,14 @@ public:
     ~QuadTree();
     
     // testing method to print out the level of the quad tree and recursively call the branches of itself.
-    void printLevels();
+    void printDetails();
     
     
     
     
     void addParticle(Particle *particle);
-    void preOrder(QuadTree *quad);
+    void getPotentialCollidingParticles(std::vector<std::vector<Particle*>>& potentialCollisions);
+    void clearParticles();
+    // I assume this is used for dynamic trees:
     int size;
 };

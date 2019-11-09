@@ -117,13 +117,15 @@ CollisionSimulation::CollisionSimulation():world(22,2){
     
     //-----Quad-Tree-----
     
-    //create quad tree
+    //create an empty quad tree
     // QuadTree(float x, float y, float width, float height, int level, int maxLevel)
-    QuadTree* root = new QuadTree(-nRange,nRange,(2*nRange),(2*nRange),0,2);
+    world.root = new QuadTree(-nRange,nRange,(2*nRange),(2*nRange),0,4);
+    world.particleCollisionGenerator.root = world.root;
     
-    //test print out of the quad tree levels
-    root->printLevels();
-
+    //populate the quad tree
+    for(int i = 0; i< particles.size(); i++){
+        world.root->addParticle(particles[i]);
+    }
 }
 
 CollisionSimulation::~CollisionSimulation(){
@@ -133,21 +135,21 @@ CollisionSimulation::~CollisionSimulation(){
 }
 
 void CollisionSimulation::update(void){
-//     // Recenter the axes
-//    float duration = this->getTimeInterval()/1000;
-//
-//
-//    // clear the data structure for the grid array
-//    grid.clearDataStructures();
-//    // repopulate the data structure
-//    grid.generateGridArray(particles, nRange);
-//    //set the particles in the world to be the ones that can collide this iteration
-//    world.particleCollisionGenerator.particleGrid = grid.getParticleGrid();
-//
-//    // Run the simulation
-//    world.runPhysics(duration);
-//
-//    Application::update();
+     // Recenter the axes
+    float duration = this->getTimeInterval()/1000;
+
+    // clear the quad tree of all particles
+    world.root->clearParticles();
+    
+    //populate the quad tree
+    for(int i = 0; i< particles.size(); i++){
+        world.root->addParticle(particles[i]);
+    }
+    
+    // Run the simulation
+    world.runPhysics(duration);
+
+    Application::update();
 }
 
 void CollisionSimulation::drawLine(Vector2* start, Vector2* end){
@@ -172,30 +174,30 @@ void CollisionSimulation::display(void)
 //    end = new Vector2(-50, -50);
 //    drawLine(start, end);
     
-    //display all the grid areas
-    vector<Vector2*> gridAreas =  grid.getGridAreas();
-    for(int i =0; i < gridAreas.size();i++){
-        // top line
-        Vector2* start = gridAreas[i];
-        Vector2* end = new Vector2(gridAreas[i]->x + nRange, gridAreas[i]->y);
-        drawLine(start, end);
-        delete end; // free up memory you've allocated.
-        // right line
-        start = end;
-        end = new Vector2(end->x, end->y-nRange);
-        drawLine(start, end);
-        delete end; // free up memory you've allocated.
-        // bottom line
-        start = end;
-        end = new Vector2(end->x-nRange, end->y);
-        drawLine(start, end);
-        delete end; // free up memory you've allocated.
-        // left line
-        start = end;
-        end = gridAreas[i];
-        drawLine(start, end);
-
-    }
+//    //display all the grid areas
+//    vector<Vector2*> gridAreas =  grid.getGridAreas();
+//    for(int i =0; i < gridAreas.size();i++){
+//        // top line
+//        Vector2* start = gridAreas[i];
+//        Vector2* end = new Vector2(gridAreas[i]->x + nRange, gridAreas[i]->y);
+//        drawLine(start, end);
+//        delete end; // free up memory you've allocated.
+//        // right line
+//        start = end;
+//        end = new Vector2(end->x, end->y-nRange);
+//        drawLine(start, end);
+//        delete end; // free up memory you've allocated.
+//        // bottom line
+//        start = end;
+//        end = new Vector2(end->x-nRange, end->y);
+//        drawLine(start, end);
+//        delete end; // free up memory you've allocated.
+//        // left line
+//        start = end;
+//        end = gridAreas[i];
+//        drawLine(start, end);
+//
+//    }
     
     //display all platforms
     for(int j = 0; j<platforms.size(); j++){

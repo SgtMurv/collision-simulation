@@ -55,7 +55,6 @@ unsigned Platform::checkForContact(ParticleContact *contact ,unsigned limit) con
                     used ++;
                     contact ++;
                 }
-                
             }
             else if (projected >= platformSqLength){
                 // The blob is nearest to the end point
@@ -127,6 +126,10 @@ unsigned Platform::checkForContact(ParticleContact *contact ,unsigned limit) con
 unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned limit) const{
     unsigned used = 0;
     unsigned bruteForceComparisons = 0;
+    
+    vector<vector<Particle*>> particleGrid;
+    root->getPotentialCollidingParticles(particleGrid);
+    
     // loop through the particle grid
     for(int i =0; i< particleGrid.size(); i++){
         //check if there are more than one particle in the grid area
@@ -141,7 +144,7 @@ unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned li
                     Vector2 posJ = particleGrid[i][j]->getPosition();
                     Vector2 posX = particleGrid[i][x]->getPosition();
                     
-                    drawLineBetweenParticles(posJ, posX);
+//                    drawLineBetweenParticles(posJ, posX);
                     
                     float distance = sqrt(pow((posJ.x-posX.x), 2)+ pow((posX.y-posJ.y), 2));
                     if ((distance - particleGrid[i][j]->getRadius() - particleGrid[i][x]->getRadius()) <= 0){
@@ -162,12 +165,12 @@ unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned li
     cout << "Number of Comparisons -> "<< bruteForceComparisons << endl;
     return used;
 }
-void ParticleCollision::drawLineBetweenParticles(Vector2 p1, Vector2 p2){
-    glBegin(GL_LINES);
-    glColor3f(0,1.0,0);
-    glVertex2f(p1.x, p1.y);
-    glVertex2f(p2.x, p2.y);
-    glColor3f(0,1.0,0);
-    glEnd();
-}
+//void ParticleCollision::drawLineBetweenParticles(Vector2 p1, Vector2 p2){
+//    glBegin(GL_LINES);
+//    glColor3f(0,1.0,0);
+//    glVertex2f(p1.x, p1.y);
+//    glVertex2f(p2.x, p2.y);
+//    glColor3f(0,1.0,0);
+//    glEnd();
+//}
 

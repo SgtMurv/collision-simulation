@@ -17,7 +17,7 @@ class CollisionSimulation : public Application
     std::vector<Particle*> particles;
     std::vector<Platform*> platforms;
     ParticleWorld world;
-    PartitionedGrid grid;
+//    PartitionedGrid grid;
 public:
     CollisionSimulation();
     ~CollisionSimulation();

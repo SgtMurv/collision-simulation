@@ -4,6 +4,7 @@
 #include <vector>
 #include "particle-contact-resolution.h"
 #include "particle-contact-generator.h"
+#include "partitioned-grid.h"
 class ParticleWorld{
 protected:
     std::vector<Particle*> particles;
@@ -13,7 +14,7 @@ protected:
     ParticleContact *contacts;
     unsigned maxContacts;
 public:
-    
+    QuadTree* root;
     ParticleCollision particleCollisionGenerator;
     ParticleWorld(unsigned maxContacts, unsigned numberOfCollisionsThatCanBeResolved=0);
     ~ParticleWorld();
