@@ -126,6 +126,7 @@ CollisionSimulation::CollisionSimulation():world(22,2){
     for(int i = 0; i< particles.size(); i++){
         world.root->addParticle(particles[i]);
     }
+    world.root->printDetails();
 }
 
 CollisionSimulation::~CollisionSimulation(){
@@ -199,6 +200,30 @@ void CollisionSimulation::display(void)
 //
 //    }
     
+    int numberOfColumnsAndRows = pow(2, world.root->maxLevel);
+    float totalLength = 2* nRange;
+    float widthOfPartition = totalLength/numberOfColumnsAndRows;
+    int x = -nRange;
+    int y = nRange;
+    Vector2* start = new Vector2(x, y);
+    Vector2* end = new Vector2(x, y);
+    for(int i =0; i < numberOfColumnsAndRows;i++){
+        // top line
+        start = new Vector2(x,y - widthOfPartition);
+        end = new Vector2(x+totalLength, y - widthOfPartition);
+        drawLine(start, end);
+        y = y - widthOfPartition;
+    }
+    x = -nRange;
+    y = nRange;
+    for(int i =0; i < numberOfColumnsAndRows;i++){
+        // top line
+        start = new Vector2(x+ widthOfPartition,y);
+        end = new Vector2(x+widthOfPartition, y - totalLength);
+        drawLine(start, end);
+        x = x + widthOfPartition;
+    }
+
     //display all platforms
     for(int j = 0; j<platforms.size(); j++){
         Vector2 p0 = platforms[j]->getStart();

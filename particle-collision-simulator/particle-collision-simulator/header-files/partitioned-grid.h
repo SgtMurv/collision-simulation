@@ -22,7 +22,7 @@ private:
     float width;
     float height;
     int level;
-    int maxLevel;
+    
     std::vector<Particle*>particles;
     QuadTree *parent;
     QuadTree *NW;
@@ -31,6 +31,7 @@ private:
     QuadTree *SE;
     bool contains(QuadTree *child, Particle *particle);
 public:
+    int maxLevel;
     QuadTree(float x, float y, float width, float height, int level, int maxLevel);
     ~QuadTree();
     
