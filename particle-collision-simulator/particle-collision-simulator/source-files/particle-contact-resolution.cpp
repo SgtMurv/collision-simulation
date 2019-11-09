@@ -4,7 +4,6 @@
 // function which resolves the contact, both in terms of velocity and penetration.
 void ParticleContact::resolve(float duration){
     resolveVelocity(duration);
-    //TODO! this method needs to be expanded so that the penetration is also resolved here as well
 }
 // calculates the separating velocity at this contact
 float ParticleContact::calculateSeparatingVelocity()const{
@@ -56,8 +55,17 @@ void ParticleContact::resolveVelocity(float duration){
         particle[1]->setVelocity(particle[1]->getVelocity() +impulsePerIMass * -particle[1]->getInverseMass());
     }
 }
+void ParticleContact::drawLineBetweenParticlesBeingChecked(){
+    glBegin(GL_LINES);
+    glColor3f(0,1.0,0);
+    glVertex2f(particle[0]->getPosition().x, particle[0]->getPosition().y);
+    glVertex2f(particle[1]->getPosition().x, particle[1]->getPosition().y);
+    glColor3f(0,1.0,0);
+    glEnd();
+}
 
-//-------------------Particle-Contact-------------------------
+
+//-------------------Particle-Contact-Resolver-------------------------
 // creates a new contact resolver
 ParticleContactResolver::ParticleContactResolver(unsigned numberOfCollisionsThatCanBeResolved): numberOfCollisionsThatCanBeResolved(numberOfCollisionsThatCanBeResolved){}
 

@@ -13,6 +13,7 @@ protected:
     ParticleContact *contacts;
     unsigned maxContacts;
 public:
+    
     ParticleCollision particleCollisionGenerator;
     ParticleWorld(unsigned maxContacts, unsigned numberOfCollisionsThatCanBeResolved=0);
     ~ParticleWorld();

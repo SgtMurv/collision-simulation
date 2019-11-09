@@ -122,6 +122,8 @@ unsigned Platform::checkForContact(ParticleContact *contact ,unsigned limit) con
 //    cout << "Number of Comparisons -> "<< bruteForceComparisons << endl;
 //    return used;
 //}
+
+//-----Hard-Coded-4-Spatial-partitioned-Approach------
 unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned limit) const{
     unsigned used = 0;
     unsigned bruteForceComparisons = 0;
@@ -138,6 +140,9 @@ unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned li
                     //todo: get rid of the sqrt eventually as its less efficient
                     Vector2 posJ = particleGrid[i][j]->getPosition();
                     Vector2 posX = particleGrid[i][x]->getPosition();
+                    
+                    drawLineBetweenParticles(posJ, posX);
+                    
                     float distance = sqrt(pow((posJ.x-posX.x), 2)+ pow((posX.y-posJ.y), 2));
                     if ((distance - particleGrid[i][j]->getRadius() - particleGrid[i][x]->getRadius()) <= 0){
                         // a collision has occured so we need to populate a particle contact object
@@ -153,8 +158,16 @@ unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned li
                 }
             }
         }
-//        if (used == limit/2)break;
     }
     cout << "Number of Comparisons -> "<< bruteForceComparisons << endl;
     return used;
 }
+void ParticleCollision::drawLineBetweenParticles(Vector2 p1, Vector2 p2){
+    glBegin(GL_LINES);
+    glColor3f(0,1.0,0);
+    glVertex2f(p1.x, p1.y);
+    glVertex2f(p2.x, p2.y);
+    glColor3f(0,1.0,0);
+    glEnd();
+}
+

@@ -38,4 +38,5 @@ public:
 //    std::vector<Particle*> particles;
     std::vector<std::vector<Particle*>> particleGrid;
     unsigned checkForContact(ParticleContact *contact,unsigned limit) const;
+    static void drawLineBetweenParticles(Vector2 p1, Vector2 p2);
 };

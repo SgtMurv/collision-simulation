@@ -14,3 +14,33 @@ public:
     void clearDataStructures();
     std::vector<Vector2*> getGridAreas();
 };
+
+class QuadTree {
+private:
+    float x;
+    float y;
+    float width;
+    float height;
+    int level;
+    int maxLevel;
+    std::vector<Particle*>particles;
+    QuadTree *parent;
+    QuadTree *NW;
+    QuadTree *NE;
+    QuadTree *SW;
+    QuadTree *SE;
+    bool contains(QuadTree *child, Particle *particle);
+public:
+    QuadTree(float x, float y, float width, float height, int level, int maxLevel);
+    ~QuadTree();
+    
+    // testing method to print out the level of the quad tree and recursively call the branches of itself.
+    void printLevels();
+    
+    
+    
+    
+    void addParticle(Particle *particle);
+    void preOrder(QuadTree *quad);
+    int size;
+};

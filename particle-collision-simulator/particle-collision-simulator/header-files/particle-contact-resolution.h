@@ -21,6 +21,7 @@ public:
 protected:
     // function which resolves the contact, both in terms of velocity and penetration.
     void resolve(float duration);
+    void drawLineBetweenParticlesBeingChecked();
     // calculates the separating velocity at this contact
     float calculateSeparatingVelocity() const;
 private:

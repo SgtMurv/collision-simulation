@@ -126,8 +126,8 @@
             filePath = "particle-collision-simulator/source-files/particle-world.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "ParticleWorld::runPhysics(duration)"
             landmarkType = "7">
          </BreakpointContent>
@@ -151,22 +151,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D962B29C-14AB-4C27-9A4F-E81F68BC8231"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "particle-collision-simulator/source-files/partitioned-grid.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5"
-            endingLineNumber = "5"
-            landmarkName = "PartitionedGrid::generateGridArray(particles, nRange)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "84F60C4A-D93C-4AAC-8C86-94CEB3E4FFD8"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -174,8 +158,8 @@
             filePath = "particle-collision-simulator/source-files/particle-contact-generator.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "ParticleCollision::checkForContact(contact, limit)"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,25 +174,9 @@
             filePath = "particle-collision-simulator/source-files/particle-contact-generator.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "ParticleCollision::checkForContact(contact, limit)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E6ECE8AA-16BD-4B8F-9A42-CF2D3C08AB7F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "particle-collision-simulator/source-files/partitioned-grid.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "PartitionedGrid::generateGridArray(particles, nRange)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -222,10 +190,10 @@
             filePath = "particle-collision-simulator/source-files/collision-simulation.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "CollisionSimulation::update()"
-            landmarkType = "7">
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -238,8 +206,8 @@
             filePath = "particle-collision-simulator/source-files/collision-simulation.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "CollisionSimulation::display()"
             landmarkType = "7">
          </BreakpointContent>
@@ -254,57 +222,9 @@
             filePath = "particle-collision-simulator/source-files/particle-world.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "ParticleWorld::runPhysics(duration)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "636C7E45-BE46-4E3B-8926-15CF2075430F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "particle-collision-simulator/source-files/partitioned-grid.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "PartitionedGrid::generateGridArray(particles, nRange)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2C01728E-FADA-4A0D-B996-81C4A2FC0D1D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "particle-collision-simulator/source-files/partitioned-grid.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "PartitionedGrid::generateGridArray(particles, nRange)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E5C08AEA-7671-47AD-AB5A-4D30D280D73D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "particle-collision-simulator/source-files/partitioned-grid.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "PartitionedGrid::generateGridArray(particles, nRange)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -318,8 +238,8 @@
             filePath = "particle-collision-simulator/source-files/particle-contact-resolution.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "ParticleContactResolver::resolveContacts(contactArray, numContacts, duration)"
             landmarkType = "7">
          </BreakpointContent>
@@ -334,9 +254,9 @@
             filePath = "particle-collision-simulator/source-files/particle-contact-resolution.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "ParticleContactResolver::resolveContacts(contactArray, numContacts, duration)"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "ParticleContactResolver::ParticleContactResolver(numberOfCollisionsThatCanBeResolved)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -350,8 +270,8 @@
             filePath = "particle-collision-simulator/source-files/particle-contact-generator.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "ParticleCollision::checkForContact(contact, limit)"
             landmarkType = "7">
          </BreakpointContent>
@@ -360,6 +280,22 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "62D26096-EC59-48B6-9A54-DA9548849406"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "particle-collision-simulator/source-files/particle-world.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "ParticleWorld::generateContacts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "22FA587F-BC5D-4929-A234-C1EE12F88478"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -375,22 +311,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "22FA587F-BC5D-4929-A234-C1EE12F88478"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "particle-collision-simulator/source-files/particle-world.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "ParticleWorld::generateContacts()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "4F311A8C-04AA-4F31-A519-960DF1BB8337"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -398,8 +318,8 @@
             filePath = "particle-collision-simulator/source-files/particle-contact-resolution.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "ParticleContactResolver::resolveContacts(contactArray, numContacts, duration)"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,10 +334,10 @@
             filePath = "particle-collision-simulator/source-files/particle-contact-resolution.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "ParticleContactResolver::resolveContacts(contactArray, numContacts, duration)"
-            landmarkType = "7">
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -430,8 +350,8 @@
             filePath = "particle-collision-simulator/source-files/particle-world.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "ParticleWorld::runPhysics(duration)"
             landmarkType = "7">
          </BreakpointContent>
@@ -449,6 +369,22 @@
             startingLineNumber = "25"
             endingLineNumber = "25"
             landmarkName = "ParticleWorld::generateContacts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "845D2B33-C1CA-4F14-8E73-0721027E6D49"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "particle-collision-simulator/source-files/particle-contact-generator.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "ParticleCollision::checkForContact(contact, limit)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

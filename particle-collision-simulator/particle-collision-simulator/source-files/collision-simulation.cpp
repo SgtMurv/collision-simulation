@@ -13,8 +13,8 @@ CollisionSimulation::CollisionSimulation():world(22,2){
     Particle *blob4 = new Particle;
     
     Platform *topEdge = new Platform;
-    topEdge->setStart(Vector2 ( -nRange+5 , nRange-5 ));
-    topEdge->setEnd(Vector2 ( nRange-5 , nRange-5));
+    topEdge->setStart(Vector2 ( -nRange , nRange ));
+    topEdge->setEnd(Vector2 ( nRange , nRange));
     topEdge->addParticle(blob);
     topEdge->addParticle(blob2);
     topEdge->addParticle(blob3);
@@ -24,8 +24,8 @@ CollisionSimulation::CollisionSimulation():world(22,2){
     world.getContactGenerators().push_back(topEdge);
     
     Platform *rightEdge = new Platform;
-    rightEdge->setStart(Vector2 ( nRange-5 , nRange-5 ));
-    rightEdge->setEnd(Vector2 ( nRange-5 , -nRange+5));
+    rightEdge->setStart(Vector2 ( nRange , nRange ));
+    rightEdge->setEnd(Vector2 ( nRange , -nRange));
     rightEdge->addParticle(blob);
     rightEdge->addParticle(blob2);
     rightEdge->addParticle(blob3);
@@ -35,8 +35,8 @@ CollisionSimulation::CollisionSimulation():world(22,2){
     world.getContactGenerators().push_back(rightEdge);
     
     Platform *bottomEdge = new Platform;
-    bottomEdge->setStart(Vector2 ( nRange-5 , -nRange+5 ));
-    bottomEdge->setEnd(Vector2 ( -nRange+5 , -nRange+5));
+    bottomEdge->setStart(Vector2 ( nRange , -nRange ));
+    bottomEdge->setEnd(Vector2 ( -nRange , -nRange));
     bottomEdge->addParticle(blob);
     bottomEdge->addParticle(blob2);
     bottomEdge->addParticle(blob3);
@@ -46,8 +46,8 @@ CollisionSimulation::CollisionSimulation():world(22,2){
     world.getContactGenerators().push_back(bottomEdge);
     
     Platform *leftEdge = new Platform;
-    leftEdge->setStart(Vector2 ( -nRange+5 , -nRange+5 ));
-    leftEdge->setEnd(Vector2 ( -nRange+5 , nRange-5));
+    leftEdge->setStart(Vector2 ( -nRange , -nRange ));
+    leftEdge->setEnd(Vector2 ( -nRange , nRange));
     leftEdge->addParticle(blob);
     leftEdge->addParticle(blob2);
     leftEdge->addParticle(blob3);
@@ -114,6 +114,15 @@ CollisionSimulation::CollisionSimulation():world(22,2){
     world.getParticles().push_back(blob2);
     world.getParticles().push_back(blob3);
     world.getParticles().push_back(blob4);
+    
+    //-----Quad-Tree-----
+    
+    //create quad tree
+    // QuadTree(float x, float y, float width, float height, int level, int maxLevel)
+    QuadTree* root = new QuadTree(-nRange,nRange,(2*nRange),(2*nRange),0,2);
+    
+    //test print out of the quad tree levels
+    root->printLevels();
 
 }
 
@@ -124,18 +133,21 @@ CollisionSimulation::~CollisionSimulation(){
 }
 
 void CollisionSimulation::update(void){
-    // Recenter the axes
-    float duration = this->getTimeInterval()/1000;
-    
-    //set the particles in the world to be the ones that can collide this iteration
-    grid.clearDataStructures();
-    grid.generateGridArray(particles, nRange);
-    world.particleCollisionGenerator.particleGrid = grid.getParticleGrid();
-    
-    // Run the simulation
-    world.runPhysics(duration);
-    
-    Application::update();
+//     // Recenter the axes
+//    float duration = this->getTimeInterval()/1000;
+//
+//
+//    // clear the data structure for the grid array
+//    grid.clearDataStructures();
+//    // repopulate the data structure
+//    grid.generateGridArray(particles, nRange);
+//    //set the particles in the world to be the ones that can collide this iteration
+//    world.particleCollisionGenerator.particleGrid = grid.getParticleGrid();
+//
+//    // Run the simulation
+//    world.runPhysics(duration);
+//
+//    Application::update();
 }
 
 void CollisionSimulation::drawLine(Vector2* start, Vector2* end){

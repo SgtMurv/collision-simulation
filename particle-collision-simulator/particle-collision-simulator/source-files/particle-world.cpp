@@ -24,6 +24,8 @@ unsigned ParticleWorld::generateContacts(){
     // check for particle on particle collision
     unsigned particleCollisions = particleCollisionGenerator.checkForContact(nextContact, limit);
     
+    //display the connections between all the
+    
     limit -= particleCollisions;
     // check for particle on platform collision
     for (std::vector<ParticleContactGenerator*>::iterator generator = particleContactGenerators.begin(); generator != particleContactGenerators.end(); generator++)
