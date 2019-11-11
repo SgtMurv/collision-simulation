@@ -12,6 +12,7 @@ CollisionSimulation::CollisionSimulation():world(22,2){
     Particle *blob3 = new Particle;
     Particle *blob4 = new Particle;
     
+    // The platforms in the application are used as barriers to keep the particles within the window
     Platform *topEdge = new Platform;
     topEdge->setStart(Vector2 ( -nRange , nRange ));
     topEdge->setEnd(Vector2 ( nRange , nRange));
@@ -55,13 +56,96 @@ CollisionSimulation::CollisionSimulation():world(22,2){
     leftEdge->setRestitution(1.0f);
     platforms.push_back(leftEdge);
     world.getContactGenerators().push_back(leftEdge);
+    
+    float common = 20.0f;
 
+    Platform *top = new Platform;
+    top->setStart(Vector2 ( -common , common ));
+    top->setEnd(Vector2 ( common , common));
+    top->addParticle(blob);
+    top->addParticle(blob2);
+    top->addParticle(blob3);
+    top->addParticle(blob4);
+    top->setRestitution(1.0f);
+    platforms.push_back(top);
+    world.getContactGenerators().push_back(top);
+
+    Platform *right = new Platform;
+    right->setStart(Vector2 ( common , common ));
+    right->setEnd(Vector2 ( common , -common));
+    right->addParticle(blob);
+    right->addParticle(blob2);
+    right->addParticle(blob3);
+    right->addParticle(blob4);
+    right->setRestitution(.5f);
+    platforms.push_back(right);
+    world.getContactGenerators().push_back(right);
+
+    Platform *bottom = new Platform;
+    bottom->setStart(Vector2 ( common , -common ));
+    bottom->setEnd(Vector2 ( -common , -common));
+    bottom->addParticle(blob);
+    bottom->addParticle(blob2);
+    bottom->addParticle(blob3);
+    bottom->addParticle(blob4);
+    bottom->setRestitution(.25f);
+    platforms.push_back(bottom);
+    world.getContactGenerators().push_back(bottom);
+
+    Platform *left = new Platform;
+    left->setStart(Vector2 ( -common , -common ));
+    left->setEnd(Vector2 ( -common , common));
+    left->addParticle(blob);
+    left->addParticle(blob2);
+    left->addParticle(blob3);
+    left->addParticle(blob4);
+    left->setRestitution(0.0f);
+    platforms.push_back(left);
+    world.getContactGenerators().push_back(left);
+    
     // Create blobs
     float commonPosition = 55.0f;
     
+    //------Realistic-Physics-Examples---------
+//    blob->setPosition(-commonPosition, 0);
+//    blob->setRadius( 8 );
+////    blob->setVelocity(150,0);
+//    blob->setVelocity(0,0);
+//    blob->setAcceleration(Vector2::GRAVITY * 20.0f);
+////    blob->setAcceleration(0,0);
+//    blob->setMass(200.0f);
+//    blob->clearAccumulator();
+//    blob->setRed(1);
+//    blob->setGreen(1);
+//    blob->setBlue(0);
+//
+//    blob2->setPosition(0,0);
+//    blob2->setRadius( 8 );
+//    blob2->setVelocity(0,0);
+//    blob2->setAcceleration(Vector2::GRAVITY * 20.0f);
+////    blob2->setAcceleration(0,0);
+//    blob2->setMass(50.0f);
+//    blob2->clearAccumulator();
+//    blob2->setRed(0);
+//    blob2->setGreen(0);
+//    blob2->setBlue(1);
+//
+//    blob3->setPosition(commonPosition,0);
+//    blob3->setRadius( 8 );
+////    blob3->setVelocity(0,150);
+//    blob3->setVelocity(0,0);
+//    blob3->setAcceleration(Vector2::GRAVITY * 20.0f);
+////    blob3->setAcceleration(0,0);
+//    blob3->setMass(30.0f);
+//    blob3->clearAccumulator();
+//    blob3->setRed(0);
+//    blob3->setGreen(1);
+//    blob3->setBlue(1);
+    //------Spatial-Partitioning-Examples------
+    
     blob->setPosition(0, commonPosition);
     blob->setRadius( 5 );
-    blob->setVelocity(0,-150);
+    blob->setVelocity(0,-50);
 //    blob->setVelocity(0,0);
 //    blob->setAcceleration(Vector2::GRAVITY * 20.0f);
     blob->setAcceleration(0,0);
@@ -70,10 +154,10 @@ CollisionSimulation::CollisionSimulation():world(22,2){
     blob->setRed(1);
     blob->setGreen(0);
     blob->setBlue(0);
-    
+
     blob2->setPosition(commonPosition,0);
     blob2->setRadius( 5 );
-    blob2->setVelocity(-150,0);
+    blob2->setVelocity(-50,0);
 //    blob2->setAcceleration(Vector2::GRAVITY * 20.0f);
     blob2->setAcceleration(0,0);
     blob2->setMass(30.0f);
@@ -81,10 +165,10 @@ CollisionSimulation::CollisionSimulation():world(22,2){
     blob2->setRed(0);
     blob2->setGreen(0);
     blob2->setBlue(1);
-    
-    blob3->setPosition(0, -commonPosition);
+
+    blob3->setPosition(-commonPosition, 0);
     blob3->setRadius( 5 );
-    blob3->setVelocity(0,150);
+    blob3->setVelocity(50,0);
 //    blob3->setVelocity(0,0);
 //    blob3->setAcceleration(Vector2::GRAVITY * 20.0f);
     blob3->setAcceleration(0,0);
@@ -93,10 +177,10 @@ CollisionSimulation::CollisionSimulation():world(22,2){
     blob3->setRed(0);
     blob3->setGreen(1);
     blob3->setBlue(0);
-    
-    blob4->setPosition(-commonPosition, 0);
+
+    blob4->setPosition(0, -commonPosition);
     blob4->setRadius( 5 );
-    blob4->setVelocity(150,0);
+    blob4->setVelocity(0,50);
 //    blob4->setAcceleration(Vector2::GRAVITY * 20.0f);
     blob4->setAcceleration(0,0);
     blob4->setMass(30.0f);
@@ -105,27 +189,24 @@ CollisionSimulation::CollisionSimulation():world(22,2){
     blob4->setGreen(1);
     blob4->setBlue(0);
 
-    
     particles.push_back(blob);
     particles.push_back(blob2);
     particles.push_back(blob3);
     particles.push_back(blob4);
-    world.getParticles().push_back(blob);
-    world.getParticles().push_back(blob2);
-    world.getParticles().push_back(blob3);
-    world.getParticles().push_back(blob4);
     
-    //-----Quad-Tree-----
+    // set the particles vector in the world to all the new particles in the simulation
+    world.getParticles() = particles;
     
     //create an empty quad tree
-    // QuadTree(float x, float y, float width, float height, int level, int maxLevel)
-    world.root = new QuadTree(-nRange,nRange,(2*nRange),(2*nRange),0,4);
+    // params-> QuadTree(float x, float y, float width, float height, int level, int maxLevel)
+    world.root = new QuadTree(-nRange,nRange,(2*nRange),(2*nRange),0,0);
     world.particleCollisionGenerator.root = world.root;
     
     //populate the quad tree
     for(int i = 0; i< particles.size(); i++){
         world.root->addParticle(particles[i]);
     }
+    // display the levels of all the quad trees along with any particles they contain
     world.root->printDetails();
 }
 
@@ -165,41 +246,7 @@ void CollisionSimulation::drawLine(Vector2* start, Vector2* end){
 
 void CollisionSimulation::display(void)
 {
-    Application::display();
-    
-//    Vector2* start = new Vector2(-50, 50);
-//    Vector2* end = new Vector2(50, -50);
-//
-//    drawLine(start, end);
-//    start = new Vector2(50, 50);
-//    end = new Vector2(-50, -50);
-//    drawLine(start, end);
-    
-//    //display all the grid areas
-//    vector<Vector2*> gridAreas =  grid.getGridAreas();
-//    for(int i =0; i < gridAreas.size();i++){
-//        // top line
-//        Vector2* start = gridAreas[i];
-//        Vector2* end = new Vector2(gridAreas[i]->x + nRange, gridAreas[i]->y);
-//        drawLine(start, end);
-//        delete end; // free up memory you've allocated.
-//        // right line
-//        start = end;
-//        end = new Vector2(end->x, end->y-nRange);
-//        drawLine(start, end);
-//        delete end; // free up memory you've allocated.
-//        // bottom line
-//        start = end;
-//        end = new Vector2(end->x-nRange, end->y);
-//        drawLine(start, end);
-//        delete end; // free up memory you've allocated.
-//        // left line
-//        start = end;
-//        end = gridAreas[i];
-//        drawLine(start, end);
-//
-//    }
-    
+    // displaying the partitions of the grid
     int numberOfColumnsAndRows = pow(2, world.root->maxLevel);
     float totalLength = 2* nRange;
     float widthOfPartition = totalLength/numberOfColumnsAndRows;
@@ -208,7 +255,7 @@ void CollisionSimulation::display(void)
     Vector2* start = new Vector2(x, y);
     Vector2* end = new Vector2(x, y);
     for(int i =0; i < numberOfColumnsAndRows;i++){
-        // top line
+        // horizontal lines
         start = new Vector2(x,y - widthOfPartition);
         end = new Vector2(x+totalLength, y - widthOfPartition);
         drawLine(start, end);
@@ -217,7 +264,7 @@ void CollisionSimulation::display(void)
     x = -nRange;
     y = nRange;
     for(int i =0; i < numberOfColumnsAndRows;i++){
-        // top line
+        // vertical lines
         start = new Vector2(x+ widthOfPartition,y);
         end = new Vector2(x+widthOfPartition, y - totalLength);
         drawLine(start, end);
@@ -247,65 +294,7 @@ void CollisionSimulation::display(void)
         glPopMatrix();
     }
     glutSwapBuffers();
-}
-
-void CollisionSimulation::box_collision_resolve(Particle &particle){
-    float radius = particle.getRadius();
-    Vector2 position = particle.getPosition();
-    Vector2 velocity = particle.getVelocity();
-    
-    bool didHitEdge = false;
-    
-    //Check if the sphere is touching the edge of the window
-    if(position.x > width - radius || position.x < -width + radius){
-        velocity.x = -velocity.x;
-        didHitEdge = true;
-    }
-    if(position.y > height - radius || position.y < -height + radius){
-        velocity.y = -velocity.y;
-        didHitEdge = true;
-    }
-    particle.setVelocity(velocity.x, velocity.y);
-    if(didHitEdge){
-        float numberOfSecondsSinceTheStart = (this->getTimeInterval() * numberOfTimeSteps)/1000.0f;
-        cout << "Velocity...................= ["<< particle.getVelocity().x << ", " << particle.getVelocity().y << "]" << endl;
-        cout << "Seconds since the start....= "<< numberOfSecondsSinceTheStart << " seconds" <<endl;
-        cout << "X..........................= " << particle.getPosition().x << endl;
-        cout << "Y..........................= " << particle.getPosition().y << endl;
-        cout << "=========================================================" << endl;
-    }
-}
-
-//tests to see if the particle is out of the window
-bool CollisionSimulation::out_of_the_box_test(Particle particle){
-    float radius = particle.getRadius();
-    Vector2 position = particle.getPosition();
-    
-    //Check if the sphere is outside of the window and if so resets its position to the
-    if((position.x > width - radius) || (position.x < -width + radius))return true;
-    if((position.y > height - radius) || (position.y < -height + radius))return true;
-    return false;
-}
-
-//moves the particle back into the window
-void CollisionSimulation::out_of_the_box_resolve(Particle &particle){
-    float radius = particle.getRadius();
-
-    Vector2 position = particle.getPosition();
-    //Check if the sphere is outside of the window and if so resets its position to the
-    if(position.x > width - radius){
-        position.x = width - radius;
-    }
-    else if (position.x < -width + radius){
-        position.x = -width + radius;
-    }
-    if(position.y > height - radius){
-        position.y = height - radius;
-    }
-    else if (position.y < -height + radius){
-        position.y = -height + radius;
-    }
-    particle.setPosition(position.x, position.y);
+    Application::display();
 }
 
 //this methods is not a part of the sphere class and only exists to get the sphere demo object

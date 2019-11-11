@@ -1,7 +1,8 @@
 #pragma once
 #include "particle.h"
-#include "partitioned-grid.h"
+#include "quad-tree.h"
 #include "particle-contact-resolution.h"
+#include "coreMath.h"
 
 #include <vector>
 #include <list>
@@ -36,8 +37,6 @@ public:
 
 class ParticleCollision : public ParticleContactGenerator{
 public:
-//    std::vector<Particle*> particles;
-//    std::vector<std::vector<Particle*>> particleGrid;
     QuadTree* root;
     unsigned checkForContact(ParticleContact *contact,unsigned limit) const;
     static void drawLineBetweenParticles(Vector2 p1, Vector2 p2);

@@ -1,10 +1,3 @@
-//
-//  particle.cpp
-//  tutorial-3
-//
-//  Created by Matthew Honour on 04/10/2019.
-//  Copyright © 2019 Matthew Honour. All rights reserved.
-//
 
 #include "particle.h"
 #include "coreMath.h"

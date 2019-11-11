@@ -24,8 +24,6 @@ unsigned ParticleWorld::generateContacts(){
     // check for particle on particle collision
     unsigned particleCollisions = particleCollisionGenerator.checkForContact(nextContact, limit);
     
-    //display the connections between all the
-    
     limit -= particleCollisions;
     // check for particle on platform collision
     for (std::vector<ParticleContactGenerator*>::iterator generator = particleContactGenerators.begin(); generator != particleContactGenerators.end(); generator++)
@@ -45,33 +43,28 @@ void ParticleWorld::integrate(float duration){
     // just iterates through the vector
     for (std::vector<Particle*>::iterator p = particles.begin(); p != particles.end(); p++)
     {
-        // Remove all forces from the accumulator
+//        // work out the drag force on the particle and add the force to the forceAccum
+//        // add drag force to the particle
+//        float k1 = 0;
+//        float k2 = 0.01*pow((*p)->getRadius(),2);
+//        float magnitudeOfVelocity = (*p)->getVelocity().magnitude();
+//        float fDrag = -k1 * magnitudeOfVelocity -k2 * pow(magnitudeOfVelocity,2);
+//        Vector2 dragForce = (*p)->getVelocity();
+//        //This line gets the sign (direction) of the current velocity so that we know what direction to apply the drag force.
+//        dragForce.normalise();
+//        dragForce*=fDrag;
+//        (*p)->addForce(dragForce);
+        
+        //updates the properties of each particle based on its forceAccum
         (*p)->integrate(duration);
     }
 }
 void ParticleWorld::runPhysics(float duration){
     integrate(duration);
     unsigned usedContacts = generateContacts();
+    // if some contacts have been noted this iteration then we need to resolve them
     if (usedContacts)
     {
-        //TESTING:
-//        ParticleContact* nextContact = contacts;
-//        cout << "---------------------------" << endl;
-//        for(int i = 0; i < usedContacts; i++){
-//
-//            Particle p0 = *nextContact->particle[0];
-//
-//            cout << "{Particle Contact : "<< i <<"}" << endl;
-//            cout << "Particle 0 -> [" << to_string(p0.getPosition().x) << ", " << to_string(p0.getPosition().y) << "]" << endl;
-//            if (*nextContact->particle[0]){
-//                Particle p1 = *nextContact->particle[1];
-//                cout << "Particle 1 -> [" << to_string(p1.getPosition().x) << ", " << to_string(p1.getPosition().y) << "]" << endl;
-//            }
-            
-//            nextContact++;
-//        }
-
-        
         if (calculateNumberOfCollisionsThatCanBeResolved) {
             resolver.setNumberOfCollisionsThatCanBeResolved(usedContacts * 2);
         }

@@ -92,37 +92,7 @@ unsigned Platform::checkForContact(ParticleContact *contact ,unsigned limit) con
 }
 //--------------Particle-On-Particle-Collision--------------
 
-//----Brute-Force-Approach-----
-//unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned limit) const{
-//    unsigned used = 0;
-//    unsigned bruteForceComparisons = 0;
-//    // need to check if the collision has occured between each and every particle
-//    for(int i =0; i< particles.size();i++){
-//        // i+1 so we dont check the repeat collisions (1,2 and 2,1) or between the same particle(1,1)
-//        for(int j = i+1; j< particles.size();j++){
-//            //comparrison is being made so update the counter
-//            bruteForceComparisons++;
-//            //todo: get rid of the sqrt eventually as its less efficient
-//            Vector2 posI = particles[i]->getPosition();
-//            Vector2 posJ = particles[j]->getPosition();
-//            float distance = sqrt(pow((posI.x-posJ.x), 2)+ pow((posI.y-posJ.y), 2));
-//            if ((distance - particles[i]->getRadius() - particles[j]->getRadius()) <= 0){
-//                // a collision has occured so we need to populate a particle contact object
-//                contact->contactNormal = (posI - posJ).unit();
-//                contact->restitution = 1.0f; // not sure about restitution between particles
-//                contact->particle[0] = particles[i];
-//                contact->particle[1] = particles[j];
-//                contact->penetration = distance * -1;
-//                used ++;
-//            }
-//        }
-//    }
-//    // output the number of comparisons done in this methdology
-//    cout << "Number of Comparisons -> "<< bruteForceComparisons << endl;
-//    return used;
-//}
-
-//-----Hard-Coded-4-Spatial-partitioned-Approach------
+//-----Quad-Tree-Spatial-partitioned-Approach------
 unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned limit) const{
     unsigned used = 0;
     unsigned bruteForceComparisons = 0;
@@ -144,7 +114,13 @@ unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned li
                     Vector2 posJ = particleGrid[i][j]->getPosition();
                     Vector2 posX = particleGrid[i][x]->getPosition();
                     
-//                    drawLineBetweenParticles(posJ, posX);
+//                    //draw the line:
+//                    glBegin(GL_LINES);
+//                    glColor3f(1,1,1);
+//                    glVertex2f(posJ.x, posJ.y);
+//                    glVertex2f(posX.x, posX.y);
+//                    glColor3f(1,1,1);
+//                    glEnd();
                     
                     float distance = sqrt(pow((posJ.x-posX.x), 2)+ pow((posX.y-posJ.y), 2));
                     if ((distance - particleGrid[i][j]->getRadius() - particleGrid[i][x]->getRadius()) <= 0){
@@ -165,12 +141,3 @@ unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned li
     cout << "Number of Comparisons -> "<< bruteForceComparisons << endl;
     return used;
 }
-//void ParticleCollision::drawLineBetweenParticles(Vector2 p1, Vector2 p2){
-//    glBegin(GL_LINES);
-//    glColor3f(0,1.0,0);
-//    glVertex2f(p1.x, p1.y);
-//    glVertex2f(p2.x, p2.y);
-//    glColor3f(0,1.0,0);
-//    glEnd();
-//}
-
