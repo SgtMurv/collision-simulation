@@ -32,7 +32,7 @@ vector<Particle*> Platform::getParticles(){
     return this->particles;
 }
 //---------------Particle-On-Platform-Collision---------------------
-unsigned Platform::checkForContact(ParticleContact *contact ,unsigned limit) const{
+unsigned Platform::checkForContact(ParticleContact* &contact ,unsigned limit) const{
     unsigned used = 0;
         for(int i = 0; i < particles.size();i++){
             // Check for penetration
@@ -93,7 +93,7 @@ unsigned Platform::checkForContact(ParticleContact *contact ,unsigned limit) con
 //--------------Particle-On-Particle-Collision--------------
 
 //-----Quad-Tree-Spatial-partitioned-Approach------
-unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned limit) const{
+unsigned ParticleCollision::checkForContact(ParticleContact* &contact,unsigned limit) const{
     unsigned used = 0;
     unsigned bruteForceComparisons = 0;
     
@@ -138,6 +138,6 @@ unsigned ParticleCollision::checkForContact(ParticleContact *contact,unsigned li
             }
         }
     }
-    cout << "Number of Comparisons -> "<< bruteForceComparisons << endl;
+//    cout << "Number of Comparisons -> "<< bruteForceComparisons << endl;
     return used;
 }

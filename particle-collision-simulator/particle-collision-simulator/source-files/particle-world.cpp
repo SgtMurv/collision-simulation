@@ -63,6 +63,21 @@ void ParticleWorld::runPhysics(float duration){
     integrate(duration);
     unsigned usedContacts = generateContacts();
     // if some contacts have been noted this iteration then we need to resolve them
+    
+//    //check the contacts array:
+//    if(contacts[0].particle[0] != nullptr){
+//        for(int i=0; i< usedContacts; i++){
+//            cout << "-------------------------------------" << endl;
+//
+//            if(contacts[i].particle[1])
+//            {
+//                cout << "2 Particle Collision" << endl;
+//            }else{
+//                cout << "Particle On Platform Collision" << endl;
+//            }
+//        }
+//    }
+    
     if (usedContacts)
     {
         if (calculateNumberOfCollisionsThatCanBeResolved) {

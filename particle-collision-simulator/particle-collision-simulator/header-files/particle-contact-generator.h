@@ -10,7 +10,7 @@
 // interface class for stationary objects in the simulation
 class ParticleContactGenerator{
 public:
-    virtual unsigned checkForContact(ParticleContact *contact, unsigned limit) const = 0;
+    virtual unsigned checkForContact(ParticleContact* &contact, unsigned limit) const = 0;
 };
 
 class Platform : public ParticleContactGenerator{
@@ -32,12 +32,12 @@ public:
     void addParticle(Particle* m);
     std::vector<Particle*> getParticles();
     
-    unsigned checkForContact(ParticleContact *contact,unsigned limit) const;
+    unsigned checkForContact(ParticleContact* &contact,unsigned limit) const;
 };
 
 class ParticleCollision : public ParticleContactGenerator{
 public:
     QuadTree* root;
-    unsigned checkForContact(ParticleContact *contact,unsigned limit) const;
+    unsigned checkForContact(ParticleContact* &contact,unsigned limit) const;
     static void drawLineBetweenParticles(Vector2 p1, Vector2 p2);
 };

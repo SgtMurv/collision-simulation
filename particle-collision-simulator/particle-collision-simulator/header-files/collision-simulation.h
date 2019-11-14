@@ -20,6 +20,9 @@ public:
     ~CollisionSimulation();
     virtual void display();
     virtual void update();
+    void createPlatform(Vector2 start, Vector2 end, float restitution);
+    void createParticle(Vector2 position, float radius, Vector2 velocity, Vector2 acceleration, float mass, float red, float blue, float green);
+    
     void drawLine(Vector2* start, Vector2* end);
     void drawPartitions(float nRange);
 };

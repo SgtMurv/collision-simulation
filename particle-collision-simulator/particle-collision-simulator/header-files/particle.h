@@ -23,6 +23,7 @@ public:
     virtual void integrate(float duration);
     
     void setPosition(const float x, const float y);
+    void setPosition(Vector2 position);
     Vector2 getPosition() const;
     
     void setVelocity(const float x, const float y);

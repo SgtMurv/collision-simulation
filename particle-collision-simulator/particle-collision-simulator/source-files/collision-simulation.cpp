@@ -4,202 +4,41 @@
 
 using namespace std;
 
-CollisionSimulation::CollisionSimulation():world(22,2){
+CollisionSimulation::CollisionSimulation():world(120000,120000){
     width = 600;
     height = 600;
-    Particle *blob = new Particle;
-    Particle *blob2 = new Particle;
-    Particle *blob3 = new Particle;
-    Particle *blob4 = new Particle;
     
+    // create particles
+    const int particleCount = 20;
+    float radius = 5;
+    Vector2 position = Vector2(-nRange+radius, nRange-radius);
+    const float decrease =3*radius;
+    float xIncrease = decrease;
+    for(int i = 0; i<particleCount; i++){
+        position = Vector2(position.x+xIncrease,position.y);
+        // check if the position is out the window
+        if(position.x >= (nRange -radius) || position.x-radius >= (nRange -radius) ||
+           position.x <= (-nRange+radius) || position.x+radius <= (-nRange+radius)){
+            //if so then reduce the y value and change the incrementors sign
+            position.y -= decrease;
+            position.x -= xIncrease;
+            xIncrease = -xIncrease;
+        }
+        createParticle(position, radius, Vector2(80,0), Vector2(Vector2::GRAVITY * 20.0f), 30.0f, 1, 0, 1);
+    }
+        
     // The platforms in the application are used as barriers to keep the particles within the window
-    Platform *topEdge = new Platform;
-    topEdge->setStart(Vector2 ( -nRange , nRange ));
-    topEdge->setEnd(Vector2 ( nRange , nRange));
-    topEdge->addParticle(blob);
-    topEdge->addParticle(blob2);
-    topEdge->addParticle(blob3);
-    topEdge->addParticle(blob4);
-    topEdge->setRestitution(1.0f);
-    platforms.push_back(topEdge);
-    world.getContactGenerators().push_back(topEdge);
-    
-    Platform *rightEdge = new Platform;
-    rightEdge->setStart(Vector2 ( nRange , nRange ));
-    rightEdge->setEnd(Vector2 ( nRange , -nRange));
-    rightEdge->addParticle(blob);
-    rightEdge->addParticle(blob2);
-    rightEdge->addParticle(blob3);
-    rightEdge->addParticle(blob4);
-    rightEdge->setRestitution(1.0f);
-    platforms.push_back(rightEdge);
-    world.getContactGenerators().push_back(rightEdge);
-    
-    Platform *bottomEdge = new Platform;
-    bottomEdge->setStart(Vector2 ( nRange , -nRange ));
-    bottomEdge->setEnd(Vector2 ( -nRange , -nRange));
-    bottomEdge->addParticle(blob);
-    bottomEdge->addParticle(blob2);
-    bottomEdge->addParticle(blob3);
-    bottomEdge->addParticle(blob4);
-    bottomEdge->setRestitution(1.0f);
-    platforms.push_back(bottomEdge);
-    world.getContactGenerators().push_back(bottomEdge);
-    
-    Platform *leftEdge = new Platform;
-    leftEdge->setStart(Vector2 ( -nRange , -nRange ));
-    leftEdge->setEnd(Vector2 ( -nRange , nRange));
-    leftEdge->addParticle(blob);
-    leftEdge->addParticle(blob2);
-    leftEdge->addParticle(blob3);
-    leftEdge->addParticle(blob4);
-    leftEdge->setRestitution(1.0f);
-    platforms.push_back(leftEdge);
-    world.getContactGenerators().push_back(leftEdge);
-    
-    float common = 20.0f;
+    createPlatform(Vector2 ( -nRange , nRange ), Vector2 ( nRange , nRange), 1.0f);
+    createPlatform(Vector2 ( nRange , nRange ), Vector2 ( nRange , -nRange), 1.0f);
+    createPlatform(Vector2 ( nRange , -nRange ), Vector2 ( -nRange , -nRange), 1.0f);
+    createPlatform(Vector2 ( -nRange , -nRange ), Vector2 ( -nRange , nRange), 1.0f);
 
-    Platform *top = new Platform;
-    top->setStart(Vector2 ( -common , common ));
-    top->setEnd(Vector2 ( common , common));
-    top->addParticle(blob);
-    top->addParticle(blob2);
-    top->addParticle(blob3);
-    top->addParticle(blob4);
-    top->setRestitution(1.0f);
-    platforms.push_back(top);
-    world.getContactGenerators().push_back(top);
-
-    Platform *right = new Platform;
-    right->setStart(Vector2 ( common , common ));
-    right->setEnd(Vector2 ( common , -common));
-    right->addParticle(blob);
-    right->addParticle(blob2);
-    right->addParticle(blob3);
-    right->addParticle(blob4);
-    right->setRestitution(.5f);
-    platforms.push_back(right);
-    world.getContactGenerators().push_back(right);
-
-    Platform *bottom = new Platform;
-    bottom->setStart(Vector2 ( common , -common ));
-    bottom->setEnd(Vector2 ( -common , -common));
-    bottom->addParticle(blob);
-    bottom->addParticle(blob2);
-    bottom->addParticle(blob3);
-    bottom->addParticle(blob4);
-    bottom->setRestitution(.25f);
-    platforms.push_back(bottom);
-    world.getContactGenerators().push_back(bottom);
-
-    Platform *left = new Platform;
-    left->setStart(Vector2 ( -common , -common ));
-    left->setEnd(Vector2 ( -common , common));
-    left->addParticle(blob);
-    left->addParticle(blob2);
-    left->addParticle(blob3);
-    left->addParticle(blob4);
-    left->setRestitution(0.0f);
-    platforms.push_back(left);
-    world.getContactGenerators().push_back(left);
-    
-    // Create blobs
-    float commonPosition = 55.0f;
-    
-    //------Realistic-Physics-Examples---------
-//    blob->setPosition(-commonPosition, 0);
-//    blob->setRadius( 8 );
-////    blob->setVelocity(150,0);
-//    blob->setVelocity(0,0);
-//    blob->setAcceleration(Vector2::GRAVITY * 20.0f);
-////    blob->setAcceleration(0,0);
-//    blob->setMass(200.0f);
-//    blob->clearAccumulator();
-//    blob->setRed(1);
-//    blob->setGreen(1);
-//    blob->setBlue(0);
-//
-//    blob2->setPosition(0,0);
-//    blob2->setRadius( 8 );
-//    blob2->setVelocity(0,0);
-//    blob2->setAcceleration(Vector2::GRAVITY * 20.0f);
-////    blob2->setAcceleration(0,0);
-//    blob2->setMass(50.0f);
-//    blob2->clearAccumulator();
-//    blob2->setRed(0);
-//    blob2->setGreen(0);
-//    blob2->setBlue(1);
-//
-//    blob3->setPosition(commonPosition,0);
-//    blob3->setRadius( 8 );
-////    blob3->setVelocity(0,150);
-//    blob3->setVelocity(0,0);
-//    blob3->setAcceleration(Vector2::GRAVITY * 20.0f);
-////    blob3->setAcceleration(0,0);
-//    blob3->setMass(30.0f);
-//    blob3->clearAccumulator();
-//    blob3->setRed(0);
-//    blob3->setGreen(1);
-//    blob3->setBlue(1);
-    //------Spatial-Partitioning-Examples------
-    
-    blob->setPosition(0, commonPosition);
-    blob->setRadius( 5 );
-    blob->setVelocity(0,-50);
-//    blob->setVelocity(0,0);
-//    blob->setAcceleration(Vector2::GRAVITY * 20.0f);
-    blob->setAcceleration(0,0);
-    blob->setMass(30.0f);
-    blob->clearAccumulator();
-    blob->setRed(1);
-    blob->setGreen(0);
-    blob->setBlue(0);
-
-    blob2->setPosition(commonPosition,0);
-    blob2->setRadius( 5 );
-    blob2->setVelocity(-50,0);
-//    blob2->setAcceleration(Vector2::GRAVITY * 20.0f);
-    blob2->setAcceleration(0,0);
-    blob2->setMass(30.0f);
-    blob2->clearAccumulator();
-    blob2->setRed(0);
-    blob2->setGreen(0);
-    blob2->setBlue(1);
-
-    blob3->setPosition(-commonPosition, 0);
-    blob3->setRadius( 5 );
-    blob3->setVelocity(50,0);
-//    blob3->setVelocity(0,0);
-//    blob3->setAcceleration(Vector2::GRAVITY * 20.0f);
-    blob3->setAcceleration(0,0);
-    blob3->setMass(30.0f);
-    blob3->clearAccumulator();
-    blob3->setRed(0);
-    blob3->setGreen(1);
-    blob3->setBlue(0);
-
-    blob4->setPosition(0, -commonPosition);
-    blob4->setRadius( 5 );
-    blob4->setVelocity(0,50);
-//    blob4->setAcceleration(Vector2::GRAVITY * 20.0f);
-    blob4->setAcceleration(0,0);
-    blob4->setMass(30.0f);
-    blob4->clearAccumulator();
-    blob4->setRed(1);
-    blob4->setGreen(1);
-    blob4->setBlue(0);
-
-    particles.push_back(blob);
-    particles.push_back(blob2);
-    particles.push_back(blob3);
-    particles.push_back(blob4);
-    
     // set the particles vector in the world to all the new particles in the simulation
     world.getParticles() = particles;
     
     //create an empty quad tree
     // params-> QuadTree(float x, float y, float width, float height, int level, int maxLevel)
-    world.root = new QuadTree(-nRange,nRange,(2*nRange),(2*nRange),0,0);
+    world.root = new QuadTree(-nRange,nRange,(2*nRange),(2*nRange),0,3);
     world.particleCollisionGenerator.root = world.root;
     
     //populate the quad tree
@@ -208,6 +47,33 @@ CollisionSimulation::CollisionSimulation():world(22,2){
     }
     // display the levels of all the quad trees along with any particles they contain
     world.root->printDetails();
+}
+
+void CollisionSimulation::createPlatform(Vector2 start, Vector2 end, float restitution){
+    Platform *newPlatform = new Platform;
+    newPlatform->setStart(start);
+    newPlatform->setEnd(end);
+    for(int i =0; i<this->particles.size();i++){
+        newPlatform->addParticle(this->particles[i]);
+    }
+    newPlatform->setRestitution(restitution);
+    platforms.push_back(newPlatform);
+    world.getContactGenerators().push_back(newPlatform);
+}
+
+void CollisionSimulation::createParticle(Vector2 position, float radius, Vector2 velocity, Vector2 acceleration, float mass, float red, float blue, float green){
+    Particle* newParticle = new Particle;
+    newParticle->setPosition(position);
+    newParticle->setRadius(radius);
+    newParticle->setVelocity(velocity);
+    newParticle->setAcceleration(acceleration);
+    newParticle->setMass(mass);
+    newParticle->clearAccumulator();
+    newParticle->setRed(red);
+    newParticle->setBlue(blue);
+    newParticle->setGreen(green);
+    
+    this->particles.push_back(newParticle);
 }
 
 CollisionSimulation::~CollisionSimulation(){
