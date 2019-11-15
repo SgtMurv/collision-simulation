@@ -1,10 +1,3 @@
-//
-//  app.cpp
-//  sphere-tutorial-2
-//
-//  Created by Matthew Honour on 27/09/2019.
-//  Copyright © 2019 Matthew Honour. All rights reserved.
-//
 #define GL_SILENCE_DEPRECATION // this line silences the yellow warnings of deprecation of OpenGL from Xcode.
 #include <GLUT/GLUT.h>
 #include "../header-files/app.h"

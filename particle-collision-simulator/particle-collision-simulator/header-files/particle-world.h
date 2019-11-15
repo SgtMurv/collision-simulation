@@ -11,7 +11,6 @@ protected:
     std::vector<ParticleContactGenerator*> particleContactGenerators;
     bool calculateNumberOfCollisionsThatCanBeResolved;
     ParticleContactResolver resolver;
-//    ParticleContact *contacts;
     unsigned maxContacts;
 public:
     ParticleContact *contacts;
@@ -24,6 +23,7 @@ public:
     void runPhysics(float duration);
     std::vector<Particle*>& getParticles();
     std::vector<ParticleContactGenerator*>& getContactGenerators();
+    void setMaxContacts(int maxContacts);
 };
 
 #endif // PARTICLE_WORLD_H

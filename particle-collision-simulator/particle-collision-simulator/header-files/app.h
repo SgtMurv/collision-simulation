@@ -8,10 +8,11 @@
 
 class Application{
 protected:  //only inheriting classes have access to these properties.
-    float nRange = 100.0f;
+    float nRange = 300.0f;
     int height;
     int width;
     float timeInterval = 10.0f;
+//    float timeInterval = 25.0f;
     float numberOfTimeSteps = 0.0f;
 public:
     virtual void initGraphics();

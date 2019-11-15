@@ -3,6 +3,8 @@
 #include "coreMath.h"
 #include "assert.h"
 #include <float.h>
+// most of the methods in this class are just getters and setters for the particle attributes, apart from the integrate method.
+
 //----------Position----------------
 void Particle::setPosition(const float x, const float y){
     this->position.x = x;

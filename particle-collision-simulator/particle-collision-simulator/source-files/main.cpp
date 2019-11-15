@@ -1,10 +1,3 @@
-//
-//  main.cpp
-//  sphere-tutorial-2
-//
-//  Created by Matthew Honour on 27/09/2019.
-//  Copyright © 2019 Matthew Honour. All rights reserved.
-//
 #define GL_SILENCE_DEPRECATION // this line silences the yellow warnings of deprecation of OpenGL from
 #include <GLUT/GLUT.h>
 #include "../header-files/app.h"
@@ -25,6 +18,7 @@ void resize(int width, int height){
 }
 void TimerFunc(int value)
 {
+    // calls the update method of the app after a specified amount of time.
     app->update();
     glutTimerFunc(app->getTimeInterval(), TimerFunc, 1);
 }

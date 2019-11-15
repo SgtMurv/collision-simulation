@@ -5,7 +5,7 @@
 void ParticleContact::resolve(float duration){
     resolveVelocity(duration);
 }
-// calculates the separating velocity at this contact
+// calculates the separating velocity of this contact
 float ParticleContact::calculateSeparatingVelocity()const{
     Vector2 relativeVelocity = particle[0]->getVelocity();
     //checks if this contact involves 2 particles
@@ -33,7 +33,7 @@ void ParticleContact::resolveVelocity(float duration){
 
     // We apply the change in velocity to each object in proportion to
     // their inverse mass (i.e. those with lower inverse mass [higher
-    // actual mass] get less change in velocity)..
+    // actual mass] get less change in velocity)
     float totalInverseMass = particle[0]->getInverseMass();
     if (particle[1]) totalInverseMass += particle[1]->getInverseMass();
 
@@ -60,6 +60,7 @@ void ParticleContact::resolveVelocity(float duration){
 // creates a new contact resolver
 ParticleContactResolver::ParticleContactResolver(unsigned numberOfCollisionsThatCanBeResolved): numberOfCollisionsThatCanBeResolved(numberOfCollisionsThatCanBeResolved){}
 
+// setter for the numberOfCollisionsThatCanBeResolved.
 void ParticleContactResolver::setNumberOfCollisionsThatCanBeResolved(unsigned numberOfCollisionsThatCanBeResolved){
     this->numberOfCollisionsThatCanBeResolved = numberOfCollisionsThatCanBeResolved;
 }
@@ -67,6 +68,7 @@ void ParticleContactResolver::setNumberOfCollisionsThatCanBeResolved(unsigned nu
 void ParticleContactResolver::resolveContacts(ParticleContact *contactArray, unsigned numContacts, float duration){
     unsigned i;
     this->numberofCollisionsActuallyResolved = 0;
+    // loops until all of the collisions have been resolved
     while(numberofCollisionsActuallyResolved < numberOfCollisionsThatCanBeResolved)
     {
         // Find the contact with the largest closing velocity;
@@ -87,7 +89,8 @@ void ParticleContactResolver::resolveContacts(ParticleContact *contactArray, uns
 
         // Resolve this contact
         contactArray[maxIndex].resolve(duration);
-
+        
+        //increment the number of collisions resolved.
         numberofCollisionsActuallyResolved++;
     }
 }

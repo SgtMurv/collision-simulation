@@ -14,12 +14,10 @@ private:
     int level;
     
     std::vector<Particle*>particles;
-    QuadTree *parent;
     QuadTree *NW;
     QuadTree *NE;
     QuadTree *SW;
     QuadTree *SE;
-    bool contains(QuadTree *child, Particle *particle);
 public:
     int maxLevel;
     QuadTree(float x, float y, float width, float height, int level, int maxLevel);
